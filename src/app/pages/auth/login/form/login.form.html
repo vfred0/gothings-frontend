@@ -1,0 +1,19 @@
+<div class="c-auth-page o-layout-auth-page">
+  <svg-icon [applyClass]="true"
+            [class]="'c-auth-page__logo'"
+            src="assets/icons/logo.svg" />
+  <div class="c-auth-page__content">
+    <gothings-input [icon]="Icon.Profile"
+                    (textChanged)="this.onUserNameChanged($event)"
+                    [errorMessage]="'El nombre de usuario es requerido'"
+                    [placeholder]="'Ingrese su nombre de usuario'"
+                    [title]="'Usuario'" />
+    <gothings-input [icon]="Icon.Security"
+                    (textChanged)="this.onPasswordChanged($event)"
+                    [errorMessage]="'La contraseña es requerida'"
+                    [placeholder]="'Ingrese su contraseña'"
+                    [title]="'Contraseña'"
+                    [type]="'password'" />
+    <gothings-button (click)="onLogin()" [description]="'Iniciar sesión'" [icon]="Icon.Login"/>
+  </div>
+</div>
