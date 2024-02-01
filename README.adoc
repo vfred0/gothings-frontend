@@ -1,0 +1,36 @@
+= Gothings
+:toc:
+:toc-title: Contents
+
+== Introduction
+
+This is a project for technical test for Java Developer position at Gizlo.
+
+== Requirements
+
+Create a new Angular project using the Angular CLI.
+
+[source,bash]
+ng new gothings --minimal -p=gothings --routing -S -s --style=scss
+
+Install prettier and eslint:
+
+First, open the project folder:
+
+[source,bash]
+cd gothings
+
+Then, install the packages:
+
+[source,bash]
+pnpm i @angular-eslint/builder @angular-eslint/eslint-plugin @angular-eslint/eslint-plugin-template @angular-eslint/schematics @angular-eslint/template-parser @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint eslint-config-prettier eslint-plugin-prettier prettier prettier-eslint
+
+== Running the project
+
+To run the project, you need to have Node.js and npm installed.
+Then, you can run the following commands:
+
+[source,bash]
+ng serve
+
+Open your browser and navigate to `http://localhost:4200/`.
