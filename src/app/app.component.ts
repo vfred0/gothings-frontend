@@ -5,13 +5,7 @@ import { RouterOutlet } from '@angular/router';
   selector: 'gothings-root',
   standalone: true,
   imports: [RouterOutlet],
-  template: `
-    <h1>Welcome to {{ title }}!</h1>
-
-    <router-outlet />
-  `,
+  template: ` <router-outlet /> `,
   styles: [],
 })
-export class AppComponent {
-  title = 'gothings';
-}
+export class AppComponent {}
