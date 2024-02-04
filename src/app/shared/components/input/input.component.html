@@ -1,0 +1,22 @@
+<div class="c-input" [formGroupName]="this.formGroupName">
+  @if (this.withTitle) {
+    <span class="o-text-lg-semibold">{{ this.title }}</span>
+  }
+  @if (this.isTextArea) {
+    <textarea
+      [formControl]="this.inputValue"
+      class="c-input__text-area o-text-base-regular"
+      cols="5"
+      placeholder="{{ this.placeholder }}"
+      rows="5"></textarea>
+  } @else {
+    <div class="c-input__container">
+      <div class="c-input__container-svg">
+        <svg-icon [applyClass]="true" [class]="'c-input__icon'"
+                  src="assets/icons/{{ this.icon }}.svg" />
+      </div>
+      <input [formControl]="this.inputValue" [type]="this.type" class="c-input__text o-text-base-regular"
+             placeholder="{{ this.getMessagePlaceholder() }}" />
+    </div>
+  }
+</div>
