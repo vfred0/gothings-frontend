@@ -32,8 +32,6 @@
     @if (this.isDirties() && !this.isCorrectPassword) {
       <span class="o-text-sm-semibold">Las contraseñas no coinciden</span>
     }
-    {{this.isDirties()}}
-    {{this.isCorrectPassword}}
     <gothings-button (click)="this.onRegister()" [description]="'Registrarse'" [icon]="Icon.Save"
                      [isDisabled]="!this.isValidForm()" />
 
