@@ -1,0 +1,12 @@
+<label class="custom-file-upload" for="fileInput">
+  <gothings-button (click)="uploadImage.click()"
+                   [description]="'Cargar foto'"
+                   [icon]="Icon.Camera"
+                   [buttonType]="ButtonType.Secondary" />
+</label>
+<input
+  #uploadImage
+  (change)="onFileSelected($event)"
+  accept="image/*"
+  hidden
+  id="fileInput" type="file" />
