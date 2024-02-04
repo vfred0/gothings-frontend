@@ -31,13 +31,14 @@ export class RegisterForm {
   }
 
   onRegister() {
-    this.registerRequestDto.names =
-      this.formGroup.get('names')?.value.inputValue;
-    this.registerRequestDto.username =
-      this.formGroup.get('username')?.value.inputValue;
-    this.registerRequestDto.password =
-      this.formGroup.get('password')?.value.inputValue;
+    this.registerRequestDto.names = this.getValue('names');
+    this.registerRequestDto.username = this.getValue('username');
+    this.registerRequestDto.password = this.getValue('password');
     this.register.emit(this.registerRequestDto);
+  }
+
+  private getValue(value: string) {
+    return this.formGroup.get(value)?.value.inputValue;
   }
 
   isValidForm(): boolean {
@@ -45,10 +46,7 @@ export class RegisterForm {
   }
 
   get isCorrectPassword(): boolean {
-    return (
-      this.formGroup.get('password')?.value.inputValue ===
-      this.formGroup.get('confirmPassword')?.value.inputValue
-    );
+    return this.getValue('password') === this.getValue('confirmPassword');
   }
 
   isDirties(): boolean {
