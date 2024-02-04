@@ -1,14 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { Icon } from '@core/enums/icon';
 import { InputComponent } from '@shared/components/input/input.component';
 import { ButtonComponent } from '@shared/components/button/button.component';
-import { TypeButton } from '@core/enums/type.button';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SvgIconComponent } from 'angular-svg-icon';
-import { LoginRequestDto } from '@core/dtos/auth/login.request.dto';
+import { LoginRequestDto } from '@core/dtos/auth/login-request.dto';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'gothings-login-form',
+  selector: 'gothings-login',
   standalone: true,
   imports: [
     InputComponent,
@@ -18,32 +18,33 @@ import { LoginRequestDto } from '@core/dtos/auth/login.request.dto';
   ],
   templateUrl: './login.form.html',
 })
-
 export default class LoginForm {
-
   protected readonly Icon = Icon;
-  protected readonly TypeButton = TypeButton;
+  protected readonly Validators = Validators;
   private readonly loginRequestDto: LoginRequestDto;
+  private router: Router;
+  formGroup: FormGroup;
+
+  @Output() requestLogin: EventEmitter<LoginRequestDto>;
 
   constructor() {
     this.loginRequestDto = {} as LoginRequestDto;
-  }
-
-  onUserNameChanged(username: string) {
-    this.loginRequestDto.username = username;
-  }
-
-  onPasswordChanged(password: string) {
-    this.loginRequestDto.password = password;
+    this.requestLogin = new EventEmitter<LoginRequestDto>();
+    this.router = inject(Router);
+    this.formGroup = new FormGroup({});
   }
 
   onLogin() {
-    if (this.isValidLoginRequest) {
-      console.log('loginRequestDto', this.loginRequestDto);
-    }
+    this.loginRequestDto.username = this.getValue('username');
+    this.loginRequestDto.password = this.getValue('password');
+    this.requestLogin.emit(this.loginRequestDto);
   }
 
-  get isValidLoginRequest(): boolean {
-    return this.loginRequestDto.username.length > 0 && this.loginRequestDto.password.length > 0;
+  private getValue(value: string) {
+    return this.formGroup.get(value)?.value.inputValue;
+  }
+
+  onRegister() {
+    this.router.navigate(['auth/register']);
   }
 }

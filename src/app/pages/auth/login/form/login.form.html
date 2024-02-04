@@ -4,16 +4,19 @@
             src="assets/icons/logo.svg" />
   <div class="c-auth-page__content">
     <gothings-input [icon]="Icon.Profile"
-                    (textChanged)="this.onUserNameChanged($event)"
                     [errorMessage]="'El nombre de usuario es requerido'"
                     [placeholder]="'Ingrese su nombre de usuario'"
+                    [validators]="[Validators.required, Validators.minLength(6), Validators.maxLength(10)]"
+                    [formGroupName]="'username'"
                     [title]="'Usuario'" />
     <gothings-input [icon]="Icon.Security"
-                    (textChanged)="this.onPasswordChanged($event)"
                     [errorMessage]="'La contraseña es requerida'"
                     [placeholder]="'Ingrese su contraseña'"
+                    [validators]="[Validators.required, Validators.minLength(8), Validators.maxLength(32)]"
                     [title]="'Contraseña'"
+                    [formGroupName]="'password'"
                     [type]="'password'" />
-    <gothings-button (click)="onLogin()" [description]="'Iniciar sesión'" [icon]="Icon.Login"/>
+    <gothings-button (click)="this.onLogin()" [description]="'Iniciar sesión'" [icon]="Icon.Login" [isDisabled]="this.formGroup.invalid"/>
+    <gothings-button (click)="this.onRegister()" [description]="'Registrarse'" [icon]="Icon.Save"/>
   </div>
 </div>
