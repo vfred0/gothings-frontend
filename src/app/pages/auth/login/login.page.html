@@ -1,4 +1,4 @@
-<div class="c-auth-page o-layout-auth-page">
+<div class="c-auth-page o-layout-auth-page" [formGroup]="this.formGroup">
   <svg-icon [applyClass]="true"
             [class]="'c-auth-page__logo'"
             src="assets/icons/logo.svg" />
@@ -9,6 +9,9 @@
                     [validators]="[Validators.required, Validators.minLength(6), Validators.maxLength(10)]"
                     [formGroupName]="'username'"
                     [title]="'Usuario'" />
+    @if (this.existsErrorInUsername()) {
+      <span class="o-text-sm-semibold"> El nombre de usuario debe tener entre 6 y 10 caracteres </span>
+    }
     <gothings-input [icon]="Icon.Security"
                     [errorMessage]="'La contraseña es requerida'"
                     [placeholder]="'Ingrese su contraseña'"
@@ -16,7 +19,14 @@
                     [title]="'Contraseña'"
                     [formGroupName]="'password'"
                     [type]="'password'" />
-    <gothings-button (click)="this.onLogin()" [description]="'Iniciar sesión'" [icon]="Icon.Login" [isDisabled]="this.formGroup.invalid"/>
-    <gothings-button (click)="this.onRegister()" [description]="'Registrarse'" [icon]="Icon.Save"/>
+    @if (this.existsErrorInPassword()) {
+      <span class="o-text-sm-semibold"> La contraseña debe tener entre 8 y 32 caracteres </span>
+    }
+
+    @if (this.existsErrorInLogin) {
+      <span class="o-text-sm-semibold"> El usuario o la contraseña son incorrectos </span>
+    }
+    <gothings-button (click)="this.onLogin()" [description]="'Iniciar sesión'" [icon]="Icon.Login" />
+    <gothings-button (click)="this.onRegister()" [description]="'Registrarse'" [icon]="Icon.Save" />
   </div>
 </div>

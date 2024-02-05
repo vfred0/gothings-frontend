@@ -6,6 +6,7 @@ import { FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SvgIconComponent } from 'angular-svg-icon';
 import { LoginRequestDto } from '@core/dtos/auth/login-request.dto';
 import { Router } from '@angular/router';
+import { AuthService } from '@shared/services/auth.service';
 
 @Component({
   selector: 'gothings-login',
@@ -16,13 +17,15 @@ import { Router } from '@angular/router';
     ReactiveFormsModule,
     SvgIconComponent,
   ],
-  templateUrl: './login.form.html',
+  templateUrl: './login.page.html',
 })
-export default class LoginForm {
+export default class LoginPage {
   protected readonly Icon = Icon;
   protected readonly Validators = Validators;
   private readonly loginRequestDto: LoginRequestDto;
   private router: Router;
+  authService: AuthService;
+  existsErrorInLogin: boolean;
   formGroup: FormGroup;
 
   @Output() requestLogin: EventEmitter<LoginRequestDto>;
@@ -32,12 +35,24 @@ export default class LoginForm {
     this.requestLogin = new EventEmitter<LoginRequestDto>();
     this.router = inject(Router);
     this.formGroup = new FormGroup({});
+    this.authService = inject(AuthService);
+    this.existsErrorInLogin = false;
   }
 
   onLogin() {
     this.loginRequestDto.username = this.getValue('username');
     this.loginRequestDto.password = this.getValue('password');
-    this.requestLogin.emit(this.loginRequestDto);
+    if (this.formGroup.valid) {
+      this.authService.login(this.loginRequestDto).subscribe({
+        next: () => console.log('Next'),
+        error: () => {
+          this.existsErrorInLogin = true;
+        },
+      });
+    }
+    this.formGroup.valueChanges.subscribe(() => {
+      this.existsErrorInLogin = false;
+    });
   }
 
   private getValue(value: string) {
@@ -46,5 +61,22 @@ export default class LoginForm {
 
   onRegister() {
     this.router.navigate(['auth/register']);
+  }
+
+  existsErrorInUsername() {
+    return this.isDirty('username') && this.formGroup.get('username')?.invalid;
+  }
+
+  existsErrorInPassword() {
+    return this.isDirty('password') && this.formGroup.get('password')?.invalid;
+  }
+
+  private isDirty(value: string) {
+    const dirty = this.formGroup.get(value)?.dirty;
+    const check = dirty !== undefined;
+    if (check) {
+      return dirty;
+    }
+    return check;
   }
 }

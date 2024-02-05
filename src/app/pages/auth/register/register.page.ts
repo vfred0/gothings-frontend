@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { ButtonComponent } from '@shared/components/button/button.component';
 import { InputComponent } from '@shared/components/input/input.component';
 import { SvgIconComponent } from 'angular-svg-icon';
@@ -7,7 +7,6 @@ import { RegisterRequestDto } from '@core/dtos/auth/register-request.dto';
 import { FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'gothings-register',
   standalone: true,
   imports: [
     ButtonComponent,
@@ -15,18 +14,16 @@ import { FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
     SvgIconComponent,
     ReactiveFormsModule,
   ],
-  templateUrl: './register.form.html',
+  templateUrl: './register.page.html',
 })
-export class RegisterForm {
+export default class RegisterPage {
   protected readonly Icon = Icon;
   protected readonly Validators = Validators;
   private readonly registerRequestDto: RegisterRequestDto;
   formGroup: FormGroup;
-  @Output() register: EventEmitter<RegisterRequestDto>;
 
   constructor() {
     this.registerRequestDto = {} as RegisterRequestDto;
-    this.register = new EventEmitter<RegisterRequestDto>();
     this.formGroup = new FormGroup({});
   }
 
@@ -34,7 +31,6 @@ export class RegisterForm {
     this.registerRequestDto.names = this.getValue('names');
     this.registerRequestDto.username = this.getValue('username');
     this.registerRequestDto.password = this.getValue('password');
-    this.register.emit(this.registerRequestDto);
   }
 
   private getValue(value: string) {
