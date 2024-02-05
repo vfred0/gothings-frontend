@@ -1,1 +1,6 @@
-/* You can add global styles to this file, and also import other style files */
+@import "./app/scss/tools/tools.scss";
+@import "./app/scss/settings/settings";
+@import "./app/scss/generic/generic";
+@import "./app/scss/elements/elements";
+@import "./app/scss/objects/objects.scss";
+@import "./app/scss/components/components.scss";
