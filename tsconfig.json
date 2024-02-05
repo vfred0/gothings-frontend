@@ -23,12 +23,13 @@
       "ES2022",
       "dom"
     ],
+    "baseUrl": ".",
     "paths": {
       "@assets/*": ["src/assets/*"],
       "@core/*": ["src/app/core/*"],
       "@shared/*": ["src/app/shared/*"],
-      "@components/*": ["src/app/shared/components/*"],
-      "@pages/*": ["src/app/pages/*"]
+      "@pages/*": ["src/app/pages/*"],
+      "@env/*": ["src/environments/*"]
     }
   },
   "angularCompilerOptions": {
