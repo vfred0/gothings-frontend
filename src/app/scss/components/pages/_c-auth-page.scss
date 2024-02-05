@@ -1,0 +1,17 @@
+.c-auth-page {
+  @include column($em-48);
+
+  margin: 0 auto;
+  padding: $em-18;
+  max-width: 800px;
+
+  &__content {
+    @include column($em-24);
+  }
+
+  &__logo {
+    width: 100%;
+    max-width: 800px;
+
+  }
+}

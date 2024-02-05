@@ -1,0 +1,59 @@
+.o-icon-size {
+  &-sm {
+    $size: 18;
+    width: em($size);
+
+    @include tablet() {
+      width: em($size + 2);
+    }
+
+    @include desktop() {
+      width: em($size + 4);
+    }
+  }
+
+  &-md {
+    $size: 20;
+    @include only-mobile() {
+      width: em($size);
+    }
+
+    @include tablet() {
+      width: em($size + 2);
+    }
+
+    @include desktop() {
+      width: em($size + 4);
+    }
+  }
+
+  &-lg {
+    $size: 22;
+    @include only-mobile() {
+      width: em($size);
+    }
+
+    @include tablet() {
+      width: em($size + 2);
+    }
+
+    @include desktop() {
+      width: em($size + 4);
+    }
+  }
+
+  &-menu-icon {
+    $size: 35;
+    @include only-mobile() {
+      width: em($size);
+    }
+
+    @include tablet() {
+      width: em($size + 10);
+    }
+
+    @include desktop() {
+      width: em($size + 20);
+    }
+  }
+}

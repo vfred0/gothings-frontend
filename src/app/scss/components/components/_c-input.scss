@@ -1,0 +1,32 @@
+.c-input {
+  @include column($em-12);
+
+  &__container {
+    @include row($em-8);
+    padding: $em-14;
+    background-color: $accent-second;
+    border-radius: $em-8;
+    color: $neutral-white;
+
+    &-svg {
+      width: $em-20;
+      height: $em-20;
+    }
+  }
+
+  &__text {
+    color: $neutral-white;
+    background-color: transparent;
+    width: 100%;
+
+    &-area {
+      background-color: $accent-second;
+      padding: $em-14;
+      border-radius: $em-8;
+    }
+  }
+
+  &__icon {
+    fill: $neutral-white;
+  }
+}

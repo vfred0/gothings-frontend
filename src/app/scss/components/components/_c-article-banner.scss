@@ -1,0 +1,28 @@
+.c-article-banner {
+  position: relative;
+  background: linear-gradient(180deg, rgba(22, 29, 34, 0.35) 0%, #040404 100%);
+  @include column($em-24);
+  justify-content: center;
+  padding: em(100) $em-18 $em-18;
+
+  &__image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    object-fit: cover;
+    z-index: $z-back;
+    height: 100%;
+    width: 100%;
+  }
+
+  &__container {
+    @include column($em-12);
+    justify-content: center;
+  }
+
+  &__buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: $em-18;
+  }
+}

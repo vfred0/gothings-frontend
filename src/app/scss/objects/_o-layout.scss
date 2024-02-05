@@ -1,0 +1,63 @@
+.o-layout {
+  &-max-width {
+    max-width: $break-desktop;
+    margin: 0 auto;
+  }
+
+  &-with-menu {
+    @include column($em-24);
+    padding: em(100) $em-18 em(136);
+  }
+
+  &-without-menu {
+
+    @include column($em-24);
+    padding: em(100) $em-18 $em-18;
+  }
+
+  &-width-100 {
+    width: 100%;
+  }
+
+  &-article-cards {
+    display: grid;
+    grid-gap: $em-24;
+    width: 100%;
+    grid-template-columns: repeat(auto-fill, minmax($article-size-sm, 1fr));
+
+    @include tablet() {
+      grid-template-columns: repeat(auto-fill, minmax($article-size-md, 1fr));
+    }
+    @include desktop() {
+      grid-template-columns: repeat(auto-fill, minmax($article-size-lg, 1fr));
+    }
+  }
+
+  &-view-rating-cards {
+    display: grid;
+    grid-gap: $em-24;
+    width: 100%;
+    grid-template-columns: repeat(1, 1fr);
+
+    @include tablet() {
+      grid-template-columns: repeat(auto-fill, minmax($view-rating-card-size-md, 1fr));
+    }
+    @include desktop() {
+      grid-template-columns: repeat(auto-fill, minmax($view-rating-card-size-lg, 1fr));
+    }
+  }
+
+  &-exchange-cards {
+    display: grid;
+    grid-gap: $em-24;
+    width: 100%;
+    grid-template-columns: repeat(1, 1fr);
+
+    @include tablet() {
+      grid-template-columns: repeat(auto-fill, minmax($exchange-card-size-md, 1fr));
+    }
+    @include desktop() {
+      grid-template-columns: repeat(auto-fill, minmax($exchange-card-size-lg, 1fr));
+    }
+  }
+}

@@ -1,0 +1,35 @@
+.c-select {
+  @include column($em-12);
+
+  &__container {
+    @include row($em-8);
+    padding: $em-14;
+    background-color: $accent-second;
+    color: $neutral-white;
+    border-radius: $em-8;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+
+  &__content {
+    cursor: pointer;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: $neutral-white;
+    background-color: $accent-second;
+    appearance: none;
+    padding-right: $em-16;
+    width: 100%;
+  }
+
+  &__icon {
+    width: em(20);
+  }
+
+  &__includes {
+    background-color: $accent-first;
+    border-radius: $em-6;
+    padding: $em-12;
+    box-shadow: $shadow-sm;
+  }
+}

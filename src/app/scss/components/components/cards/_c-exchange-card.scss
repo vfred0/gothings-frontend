@@ -1,0 +1,11 @@
+.c-exchange-card {
+  @include column($em-18);
+  background-color: $accent-second;
+  padding: $em-16;
+  border-radius: $em-16;
+
+  &__buttons {
+    @include column($em-18);
+  }
+
+}

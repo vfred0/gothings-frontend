@@ -1,0 +1,13 @@
+.c-edit-profile-page {
+  gap: $em-24;
+
+  &__upload-photo {
+    @include row($em-24);
+  }
+
+  &__photo {
+    width: em(125);
+    height: em(125);
+    border-radius: 50%;
+  }
+}

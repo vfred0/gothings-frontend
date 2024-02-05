@@ -1,0 +1,29 @@
+.c-publish-article-page {
+  @include column($em-24);
+
+  &__gender-state {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: $em-24;
+
+    &.double-column {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__gallery-buttons {
+    display: flex;
+    justify-content: center;
+    gap: $em-16;
+
+    @include only-mobile {
+      flex-direction: column;
+    }
+  }
+
+  &__container-proposed {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

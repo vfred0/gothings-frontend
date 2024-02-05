@@ -1,0 +1,46 @@
+.c-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $em-16;
+
+  &__label {
+    padding: 10px 16px;
+    cursor: pointer;
+  }
+
+  &__wrapper-content {
+    order: 1;
+    width: 100%;
+    display: none;
+  }
+
+  &__content {
+    padding: $em-16;
+    @include column($em-24);
+    flex-wrap: wrap;
+    align-items: center;
+    align-content: start;
+
+    &-row {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+
+  &__radio {
+    display: none;
+  }
+
+  &__radio:checked + &__label {
+    font-weight: bold;
+    color: $neutral-white;
+    border: $em-2 solid $accent-first;
+    border-radius: $em-8;
+    background-color: $accent-second;
+    box-shadow: $shadow-md;
+  }
+
+  &__radio:checked + &__label + &__wrapper-content {
+    display: block;
+  }
+}

@@ -1,0 +1,11 @@
+.c-home-page {
+  &__inputs {
+    @include column($em-16);
+  }
+
+  &__search {
+    padding: $em-14;
+    background-color: $accent-second;
+    color: $neutral-white;
+  }
+}
