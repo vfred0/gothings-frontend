@@ -1,0 +1,6 @@
+<svg viewBox="0 0 20 20">
+    <path d="M16 2.5a1.5 1.5 0 0 1 1.06 2.56L9.62 12.5H7.5v-2.12l7.44-7.44A1.5 1.5 0 0 1 16 2.5Z"/>
+    <path clip-rule="evenodd"
+          d="M2 6a2 2 0 0 1 2-2h4a1 1 0 0 1 0 2H4v10h10v-4a1 1 0 0 1 2 0v4a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6Z"
+          fill-rule="evenodd"/>
+</svg>
