@@ -1,5 +1,5 @@
 import { ICategory } from '@shared/services/category/category.interface';
-import { CategoryEnum } from '@core/enums/category.enum';
+import { Category } from '@core/enums/category';
 
 export class CategoryService {
   categories: ICategory[];
@@ -7,60 +7,60 @@ export class CategoryService {
   constructor() {
     this.categories = [
       {
-        name: CategoryEnum.TextBooksEducationalMaterial,
+        name: Category.TextBooksEducationalMaterial,
         includes: 'Libros de texto, diccionarios, entre otros.',
         withGender: false,
       },
       {
-        name: CategoryEnum.OfficeSupplies,
+        name: Category.OfficeSupplies,
         includes:
           'Papel, bolígrafos, lápices, carpetas, organizadores, impresoras, tinta, grapadoras, entre otros.',
         withGender: false,
       },
       {
-        name: CategoryEnum.Electronics,
+        name: Category.Electronics,
         includes:
           'Laptops, monitores, computadoras, teclados, mouse, tablets, impresoras, discos duros externos, auriculares, cargadores, adaptadores, cargadores, cámaras fotográficas, reproductores de música, videoconsolas, calculadoras científicas, entre otros.',
         withGender: false,
       },
       {
-        name: CategoryEnum.FurnitureAndDecoration,
+        name: Category.FurnitureAndDecoration,
         includes:
           'Escritorios, sillas ergonómicas, estanterías, lámparas de escritorio, organizadores de almacenamiento, pósters motivacionales, elementos decorativos para el dormitorio o la sala de estudio, entre otros.',
         withGender: false,
       },
       {
-        name: CategoryEnum.Clothing,
+        name: Category.Clothing,
         includes:
           'Ropa, calzado, uniformes, trajes formales, collares, pulseras, relojes, carteras, gafas de sol, entre otros.',
         withGender: true,
       },
       {
-        name: CategoryEnum.LaboratoryMaterial,
+        name: Category.LaboratoryMaterial,
         includes:
           'Microscopios, bata de laboratorio, tubos de ensayo, entre otros.',
         withGender: false,
       },
       {
-        name: CategoryEnum.MusicalInstruments,
+        name: Category.MusicalInstruments,
         includes:
           'Guitarras, pianos, baterías, instrumentos de viento, entre otros.',
         withGender: false,
       },
       {
-        name: CategoryEnum.SportingGoods,
+        name: Category.SportingGoods,
         includes:
           'Bicicletas, balones, accesorios, raquetas, equipos de gimnasio, patines, entre otros.',
         withGender: false,
       },
       {
-        name: CategoryEnum.ArtsHandicrafts,
+        name: Category.ArtsHandicrafts,
         includes:
           'Pinturas, pinceles, arcilla, herramientas para manualidades, kits de arte, entre otros.',
         withGender: false,
       },
       {
-        name: CategoryEnum.ToysGames,
+        name: Category.ToysGames,
         includes:
           'Juegos de mesa, juguetes educativos, figuras de acción, puzzles, entre otros.',
         withGender: true,
@@ -68,17 +68,17 @@ export class CategoryService {
     ];
   }
 
-  getIncludes(category: CategoryEnum): string {
+  getIncludes(category: Category): string {
     return this.categories.find(this.getCategory(category))?.includes || '';
   }
 
-  isWithGender(category: CategoryEnum) {
+  isWithGender(category: Category) {
     return (
       this.categories.find(this.getCategory(category))?.withGender || false
     );
   }
 
-  private getCategory(category: CategoryEnum) {
+  private getCategory(category: Category) {
     return (c: ICategory) => c.name === category;
   }
 }
