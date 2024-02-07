@@ -7,6 +7,7 @@ import { SvgIconComponent } from 'angular-svg-icon';
 import { LoginRequestDto } from '@core/dtos/auth/login-request.dto';
 import { Router } from '@angular/router';
 import { AuthService } from '@shared/services/auth.service';
+import { AppRoute } from '@core/enums/app-route';
 
 @Component({
   selector: 'gothings-login',
@@ -44,7 +45,7 @@ export default class LoginPage {
     this.loginRequestDto.password = this.getValue('password');
     if (this.formGroup.valid) {
       this.authService.login(this.loginRequestDto).subscribe({
-        next: () => console.log('Next'),
+        next: () => this.router.navigate([AppRoute.Home]).then(),
         error: () => {
           this.existsErrorInLogin = true;
         },
@@ -60,7 +61,7 @@ export default class LoginPage {
   }
 
   onRegister() {
-    this.router.navigate(['auth/register']);
+    this.router.navigate([AppRoute.AuthRegister]).then();
   }
 
   existsErrorInUsername() {
