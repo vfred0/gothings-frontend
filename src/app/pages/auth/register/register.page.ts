@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ButtonComponent } from '@shared/components/button/button.component';
 import { InputComponent } from '@shared/components/input/input.component';
 import { SvgIconComponent } from 'angular-svg-icon';
 import { Icon } from '@core/enums/icon';
 import { RegisterRequestDto } from '@core/dtos/auth/register-request.dto';
 import { FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '@shared/services/auth.service';
+import { Router } from '@angular/router';
+import { AppRoute } from '@core/enums/app-route';
 
 @Component({
   standalone: true,
@@ -20,17 +23,27 @@ export default class RegisterPage {
   protected readonly Icon = Icon;
   protected readonly Validators = Validators;
   private readonly registerRequestDto: RegisterRequestDto;
+  private authService: AuthService;
+  private router: Router;
+  errorMessage: string;
   formGroup: FormGroup;
 
   constructor() {
     this.registerRequestDto = {} as RegisterRequestDto;
     this.formGroup = new FormGroup({});
+    this.authService = inject(AuthService);
+    this.router = inject(Router);
+    this.errorMessage = '';
   }
 
   onRegister() {
     this.registerRequestDto.names = this.getValue('names');
     this.registerRequestDto.username = this.getValue('username');
     this.registerRequestDto.password = this.getValue('password');
+    this.authService.register(this.registerRequestDto).subscribe({
+      next: () => this.router.navigate([AppRoute.Home]).then(),
+      error: e => (this.errorMessage = e.error.message),
+    });
   }
 
   private getValue(value: string) {
@@ -53,5 +66,15 @@ export default class RegisterPage {
       return password && confirmPassword;
     }
     return check;
+  }
+
+  isInvalid(value: string) {
+    return (
+      this.formGroup.get(value)?.touched && this.formGroup.get(value)?.invalid
+    );
+  }
+
+  existsErrorMessage() {
+    return this.errorMessage !== '';
   }
 }

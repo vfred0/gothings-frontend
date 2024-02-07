@@ -9,12 +9,18 @@
                     [validators]="[Validators.required, Validators.minLength(6), Validators.maxLength(10)]"
                     [formGroupName]="'username'"
                     [title]="'Usuario'" />
+    @if (this.isInvalid('username')) {
+      <span class="o-text-sm-semibold">El nombre de usuario debe tener un mínimo de 6 y máximo 10 caracteres </span>
+    }
     <gothings-input [icon]="Icon.Profile"
                     [errorMessage]="'Los nombres son requerido'"
                     [placeholder]="'Ingrese su nombres'"
                     [validators]="[Validators.required, Validators.minLength(3), Validators.maxLength(60)]"
                     [formGroupName]="'names'"
                     [title]="'Nombres'" />
+    @if (this.isInvalid('names')) {
+      <span class="o-text-sm-semibold">Los nombres debe tener un mínimo de 3 y máximo 60 caracteres </span>
+    }
     <gothings-input [icon]="Icon.Security"
                     [errorMessage]="'La contraseña es requerida'"
                     [placeholder]="'Ingrese su contraseña'"
@@ -22,16 +28,24 @@
                     [title]="'Contraseña'"
                     [formGroupName]="'password'"
                     [type]="'password'" />
+    @if (this.isInvalid('password')) {
+      <span class="o-text-sm-semibold">La contraseña debe tener un mínimo de 8 y máximo 32 caracteres </span>
+    }
     <gothings-input [icon]="Icon.Security"
                     [errorMessage]="'La contraseña es requerida'"
                     [placeholder]="'Ingrese su contraseña'"
                     [validators]="[Validators.required, Validators.minLength(8), Validators.maxLength(32)]"
-                    [title]="'Ingrese nuevamente su contraseña'"
+                    [title]="'Confirmar contraseña'"
                     [formGroupName]="'confirmPassword'"
                     [type]="'password'" />
     @if (this.isDirties() && !this.isCorrectPassword) {
       <span class="o-text-sm-semibold">Las contraseñas no coinciden</span>
     }
+
+    @if (this.existsErrorMessage()) {
+      <span class="o-text-sm-semibold">{{ this.errorMessage }}</span>
+    }
+
     <gothings-button (click)="this.onRegister()" [description]="'Registrarse'" [icon]="Icon.Save"
                      [isDisabled]="!this.isValidForm()" />
 
