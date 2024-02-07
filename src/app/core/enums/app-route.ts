@@ -1,0 +1,9 @@
+export enum AppRoute {
+  Home = '',
+  Auth = 'auth',
+  AuthLogin = 'auth/login',
+  AuthRegister = 'auth/register',
+  ProfileEditProfile = 'perfil/editar-perfil',
+  Login = 'login',
+  Register = 'register',
+}
