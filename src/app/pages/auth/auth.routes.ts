@@ -1,12 +1,13 @@
 import { Routes } from '@angular/router';
+import { AppRoute } from '@core/enums/app-route';
 
 const routes: Routes = [
   {
-    path: 'login',
+    path: AppRoute.Login,
     loadComponent: () => import('@pages/auth/login/login.page'),
   },
   {
-    path: 'register',
+    path: AppRoute.Register,
     loadComponent: () => import('@pages/auth/register/register.page'),
   },
 ];
