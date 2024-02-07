@@ -3,4 +3,5 @@ export interface Session {
   names: string;
   username: string;
   roles: string[];
+  token: string;
 }
