@@ -6,4 +6,6 @@ export enum AppRoute {
   ProfileEditProfile = 'perfil/editar-perfil',
   Login = 'login',
   Register = 'register',
+  Profile = 'profile',
+  EditProfile = 'edit-profile'
 }
