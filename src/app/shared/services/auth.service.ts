@@ -42,6 +42,10 @@ export class AuthService {
     this.session.names = decodeToken.names;
     this.session.username = decodeToken.sub;
     this.session.roles = decodeToken.scope;
+    this.session.photo = decodeToken.photo;
+    if (this.session.photo === '') {
+      this.session.photo = 'src/assets/default-profile.jpg';
+    }
     this.session.token = token;
     localStorage.setItem('session', JSON.stringify(this.session));
   }
@@ -72,5 +76,18 @@ export class AuthService {
 
   private existsSession() {
     return Object.keys(this.session).length !== 0;
+  }
+
+  getUserNames() {
+    return this.session.names;
+  }
+
+  getUserPhoto() {
+    return this.session.photo;
+  }
+
+  isUserAdmin() {
+    const token = this.session.token;
+    return this.jwtHelperService.decodeToken(token).scope.includes('admin');
   }
 }
