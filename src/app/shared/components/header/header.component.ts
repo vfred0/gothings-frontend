@@ -57,8 +57,13 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    function showHeader(event: NavigationEnd) {
+      return !event.url.includes(AppRoute.Auth);
+    }
+
     this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) {
+      if (event instanceof NavigationEnd && showHeader(event)) {
+        this.showHeader = showHeader(event);
         const currentUrl = event.url;
         setRoute(currentUrl);
         this.isWithPreferences = isWithPreferences();
