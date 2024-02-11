@@ -1,14 +1,7 @@
 <div [ngClass]="{ 'c-header--is-for-article-page': isForArticlePage,
     'c-header--is-with-preferences': isWithPreferences}"
      class="c-header o-layout-max-width">
-  <div class="c-header-detail">
-    <img (click)="this.onClickedPhoto()"
-         alt="{{this.headerDetail.title}}"
-         class="c-header-detail__photo" src="{{ this.headerDetail.photo}}" />
-    <div class="c-header-detail__title-description o-text-ellipsis">
-      <span class="o-text-lg-bold o-text-ellipsis">{{ this.headerDetail.title }}</span>
-    </div>
-  </div>
+  <gothings-header-detail [headerDetail]="this.headerDetail" />
   @if (this.isWithBack) {
     <gothings-button
       (click)="this.redirectToBack()"

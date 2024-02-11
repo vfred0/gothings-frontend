@@ -65,6 +65,7 @@ export class HeaderComponent implements OnInit {
         this.isWithBack = isWithBack();
         this.headerDetail.title = this.authService.getUserNames();
         this.headerDetail.photo = this.authService.getUserPhoto();
+        this.headerDetail.description = this.authService.getUserRol();
         if (!isHomeRoute()) {
           this.headerDetail.title = getRouteTitle();
         }
