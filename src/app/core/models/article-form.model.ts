@@ -10,7 +10,7 @@ export class ArticleFormModel {
   category = Category.TextBooksEducationalMaterial;
   state = State.New;
   gender = Gender.Unisex;
-  images = [];
+  images: string[] = [];
   likes = 0;
   dislikes = 0;
 }
