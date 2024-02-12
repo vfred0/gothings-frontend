@@ -2,7 +2,6 @@ import { AfterViewInit, Component, inject } from '@angular/core';
 import { HeaderComponent } from '@shared/components/header/header.component';
 import { InputComponent } from '@shared/components/input/input.component';
 import { SelectComponent } from '@shared/components/select/select.component';
-import { getLayout } from '@core/utils/app-route.util';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { getAllValues, getKey } from '@core/utils/enum.util';
 import { Category } from '@core/enums/category';
@@ -30,7 +29,6 @@ import { ButtonType } from '@core/enums/button-type';
   templateUrl: './home.page.html',
 })
 export default class HomePage implements AfterViewInit {
-  protected readonly getLayout = getLayout;
   formGroup: FormGroup;
   categories: string[];
   states: string[];
