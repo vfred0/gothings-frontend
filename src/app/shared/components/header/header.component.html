@@ -2,7 +2,7 @@
   <div [ngClass]="{ 'c-header--is-for-article-page': isForArticlePage,
     'c-header--is-with-preferences': isWithPreferences}"
        class="c-header o-layout-max-width">
-    <gothings-header-detail [headerDetail]="this.headerDetail" />
+    <gothings-header-detail [headerDetail]="this.headerDetail"  (clickedPhoto)="this.togglePreferences()" />
     @if (this.isWithBack) {
       <gothings-button
         (click)="this.redirectToBack()"
