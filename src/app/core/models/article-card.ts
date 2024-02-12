@@ -3,6 +3,7 @@ import { Gender } from '@core/enums/gender';
 import { State } from '@core/enums/state';
 import { ArticleResponseDto } from '@core/dtos/article/article-response.dto';
 import { getValue } from '@core/utils/enum.util';
+import { UserDto } from '@core/dtos/user.dto';
 
 export class ArticleCard {
   id: string;
@@ -14,7 +15,8 @@ export class ArticleCard {
   state: State;
   likes: number;
   dislikes: number;
-  image: string;
+  images: string[];
+  user: UserDto;
 
   constructor(article: ArticleResponseDto) {
     this.id = article.id;
@@ -29,6 +31,7 @@ export class ArticleCard {
     this.state = getValue(State, article.state as State) as State;
     this.likes = article.likes;
     this.dislikes = article.dislikes;
-    this.image = article.images[0];
+    this.images = article.images;
+    this.user = article.user;
   }
 }
