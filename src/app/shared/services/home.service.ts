@@ -25,9 +25,20 @@ export class HomeService extends Service<ArticleCard[]> {
   search(filterArticle: FilterArticleDto): void {
     const request = this.articleService.search(filterArticle).pipe(
       map((articles: ArticleResponseDto[]) => {
-        return articles.map(
-          (article: ArticleResponseDto) => new ArticleCard(article)
-        );
+        return articles.map((article: ArticleResponseDto) => {
+          return new ArticleCard(article);
+        });
+      })
+    );
+    this.execute(request);
+  }
+
+  showAll() {
+    const request = this.articleService.getAll().pipe(
+      map((articles: ArticleResponseDto[]) => {
+        return articles.map((article: ArticleResponseDto) => {
+          return new ArticleCard(article);
+        });
       })
     );
     this.execute(request);

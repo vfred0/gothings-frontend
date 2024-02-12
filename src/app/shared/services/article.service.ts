@@ -18,22 +18,29 @@ export class ArticleService {
     return this.http.post<void>(
       `${this.API_URL}/${this.authService.getUserId()}`,
       articleRequestDto,
-      {
-        headers: {
-          Authorization: `Bearer ${this.authService.getToken()}`,
-        },
-      }
+      this.getToken()
     );
   }
 
   search(filterArticle: FilterArticleDto) {
     return this.http.get<Array<ArticleResponseDto>>(
       `${this.API_URL}/search?title=${filterArticle.title}&category=${filterArticle.category}&state=${filterArticle.state}`,
-      {
-        headers: {
-          Authorization: `Bearer ${this.authService.getToken()}`,
-        },
-      }
+      this.getToken()
+    );
+  }
+
+  private getToken() {
+    return {
+      headers: {
+        Authorization: `Bearer ${this.authService.getToken()}`,
+      },
+    };
+  }
+
+  getAll() {
+    return this.http.get<Array<ArticleResponseDto>>(
+      `${this.API_URL}`,
+      this.getToken()
     );
   }
 }

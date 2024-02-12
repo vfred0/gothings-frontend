@@ -8,4 +8,8 @@
     background-color: $accent-second;
     color: $neutral-white;
   }
+
+  &__title-get-all {
+    @include row($em-16);
+  }
 }

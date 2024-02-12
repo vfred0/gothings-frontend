@@ -12,6 +12,9 @@ import { State as StateType } from '@core/types/state.type';
 import { FilterArticleDto } from '@core/dtos/article/filter-article.dto';
 import { HomeService } from '@shared/services/home.service';
 import { ArticleCardComponent } from '@shared/components/article-card/article-card.component';
+import { ButtonComponent } from '@shared/components/button/button.component';
+import { Icon } from '@core/enums/icon';
+import { ButtonType } from '@core/enums/button-type';
 
 @Component({
   selector: 'gothings-home',
@@ -22,6 +25,7 @@ import { ArticleCardComponent } from '@shared/components/article-card/article-ca
     SelectComponent,
     ReactiveFormsModule,
     ArticleCardComponent,
+    ButtonComponent,
   ],
   templateUrl: './home.page.html',
 })
@@ -72,5 +76,19 @@ export default class HomePage implements AfterViewInit {
 
   private getSelectedValue(value: string) {
     return this.formGroup.get(value)?.value.select;
+  }
+
+  protected readonly Icon = Icon;
+  protected readonly ButtonType = ButtonType;
+
+  getResultLabel() {
+    const totalArticlesCards = this.homeService.totalArticlesCards;
+    if (totalArticlesCards == 0) {
+      return 'No existen artículos';
+    }
+    if (totalArticlesCards == 1) {
+      return '1 artículo';
+    }
+    return `${totalArticlesCards} artículos`;
   }
 }

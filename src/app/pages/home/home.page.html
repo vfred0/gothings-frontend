@@ -1,5 +1,10 @@
 <div class="c-home-page  {{getLayout()}}" [formGroup]="this.formGroup">
-  <span class="o-text-xl-bold">Explorar</span>
+
+  <div class="c-home-page__title-get-all">
+    <span class="o-text-xl-bold">Explorar</span>
+    <gothings-button [description]="'Mostrar todos'" [icon]="Icon.Search" (click)="this.homeService.showAll()"
+                     [buttonType]="ButtonType.Secondary" />
+  </div>
 
   <div class="c-home-page__inputs">
     <gothings-input [formGroupName]="'title'" />
@@ -12,8 +17,13 @@
     <span class="o-text-xl-bold">Cargando...</span>
   }
 
-  @for (articleCard of this.homeService.articlesCards; track articleCard.id) {
-    <gothings-article-card [articleCard]="articleCard" />
+  @if (this.homeService.isCompleted()) {
+    <span class="o-text-lg-semibold"> {{ this.getResultLabel() }}</span>
 
+    @for (articleCard of this.homeService.articlesCards; track articleCard.id) {
+      <gothings-article-card [articleCard]="articleCard" />
+    }
   }
+
+
 </div>
