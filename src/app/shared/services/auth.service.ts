@@ -44,7 +44,7 @@ export class AuthService {
     this.session.roles = decodeToken.scope;
     this.session.photo = decodeToken.photo;
     if (this.session.photo === '') {
-      this.session.photo = 'src/assets/default-profile.jpg';
+      this.session.photo = 'assets/default-profile.jpg';
     }
     this.session.token = token;
     localStorage.setItem('session', JSON.stringify(this.session));
@@ -89,5 +89,17 @@ export class AuthService {
   isUserAdmin() {
     const token = this.session.token;
     return this.jwtHelperService.decodeToken(token).scope.includes('admin');
+  }
+
+  getUserRol(): string {
+    return this.session.roles.join(', ');
+  }
+
+  getUserId() {
+    return this.session.id;
+  }
+
+  getToken() {
+    return this.session.token;
   }
 }
