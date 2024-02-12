@@ -9,7 +9,6 @@ import { GalleryComponent } from '@shared/components/gallery/gallery.component';
 import { Icon } from '@core/enums/icon';
 import { ButtonType } from '@core/enums/button-type';
 import { HeaderDetail } from '@core/models/header-detail';
-import { ParseDate } from '@core/utils/parse-date';
 import { AppRoute } from '@core/enums/app-route';
 import { ArticleService } from '@shared/services/article.service';
 
@@ -61,9 +60,5 @@ export default class ArticlePage {
   onDeleteArticle() {
     this.articleService.deleteById(this.articleCard.id);
     this.router.navigate([AppRoute.Home]).then();
-  }
-
-  get date(): string {
-    return ParseDate.toRelativeTime(this.articleCard.date);
   }
 }

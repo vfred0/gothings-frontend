@@ -5,7 +5,6 @@ import { Icon } from '@core/enums/icon';
 import { NavigationExtras, Router } from '@angular/router';
 import { ButtonComponent } from '@shared/components/button/button.component';
 import { ButtonType } from '@core/enums/button-type';
-import { ParseDate } from '@core/utils/parse-date';
 import { AppRoute } from '@core/enums/app-route';
 import { ArticleCard } from '@core/models/article-card';
 
@@ -22,10 +21,6 @@ export class ArticleCardComponent {
 
   constructor(protected router: Router) {
     this.articleCard = {} as ArticleCard;
-  }
-
-  get date(): string {
-    return ParseDate.toRelativeTime(this.articleCard.date);
   }
 
   navigateToViewArticle() {

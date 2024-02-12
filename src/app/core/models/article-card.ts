@@ -4,6 +4,7 @@ import { State } from '@core/enums/state';
 import { ArticleResponseDto } from '@core/dtos/article/article-response.dto';
 import { getValue } from '@core/utils/enum.util';
 import { UserDto } from '@core/dtos/user.dto';
+import { ParseDate } from '@core/utils/parse-date';
 
 export class ArticleCard {
   id: string;
@@ -22,7 +23,7 @@ export class ArticleCard {
     this.id = article.id;
     this.title = article.title;
     this.description = article.description;
-    this.date = article.date;
+    this.date = ParseDate.toRelativeTime(article.date);
     this.category = getValue(
       Category,
       article.category as Category
