@@ -5,7 +5,7 @@ import { Icon } from '@core/enums/icon';
 import { Router } from '@angular/router';
 import { ButtonComponent } from '@shared/components/button/button.component';
 import { ButtonType } from '@core/enums/button-type';
-import { ParseDate } from '@core/models/parse-date';
+import { ParseDate } from '@core/utils/parse-date';
 import { AppRoute } from '@core/enums/app-route';
 import { ArticleCard } from '@core/models/article-card';
 
