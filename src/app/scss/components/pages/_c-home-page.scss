@@ -1,5 +1,9 @@
 .c-home-page {
+
+  @include layout-with-header();
+
   &__inputs {
+
     @include column($em-16);
   }
 
