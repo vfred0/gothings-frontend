@@ -97,6 +97,8 @@ export class HeaderComponent implements OnInit {
   }
 
   onLogout() {
+    window.location.reload();
+    this.showHeader = false;
     this.authService.destroySession();
     this.router.navigate([AppRoute.AuthLogin]).then();
     this.togglePreferences();
