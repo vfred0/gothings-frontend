@@ -104,8 +104,6 @@ export class HeaderComponent implements OnInit {
     this.togglePreferences();
   }
 
-  onClickedPhoto() {}
-
   get isWithButtonUserManagement(): boolean {
     return this.authService.isUserAdmin();
   }
