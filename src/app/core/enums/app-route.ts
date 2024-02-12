@@ -7,5 +7,8 @@ export enum AppRoute {
   Login = 'login',
   Register = 'register',
   Profile = 'profile',
-  EditProfile = 'edit-profile'
+  EditProfile = 'edit-profile',
+  Article = 'article',
+  PublishArticle = 'publish-article',
+  EditArticle = 'edit-article',
 }
