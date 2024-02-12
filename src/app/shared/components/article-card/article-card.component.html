@@ -1,0 +1,24 @@
+<div (click)="this.navigateToViewArticle()" class="c-article-card c-article-card--normal">
+  <img alt="{{ this.articleCard.title }}"
+       class="c-article-card__image"
+       src="{{ this.articleCard.image }}" />
+  <div class="c-article-card__content">
+    <div class="c-article-card__category-date o-text-sm-light">
+      <span class="c-article-card__category o-text-ellipsis">{{ this.articleCard.category }}</span>
+      <span class="c-article-card__date o-text-ellipsis">{{ this.date }}</span>
+    </div>
+    <span class="c-article-card__title o-text-base-semibold o-text-ellipsis">{{ this.articleCard.title }}</span>
+    <div class="c-article-card__tags">
+      <gothings-button [description]="this.articleCard.state"
+                       [icon]="Icon.State"
+                       [buttonType]="ButtonType.Tag" />
+      <gothings-button [description]="this.articleCard.likes.toString()"
+                       [icon]="Icon.Like"
+                       [buttonType]="ButtonType.Tag" />
+      <gothings-button [description]="this.articleCard.dislikes.toString()"
+                       [icon]="Icon.Dislike"
+                       [buttonType]="ButtonType.Tag" />
+    </div>
+  </div>
+  <ng-content />
+</div>
