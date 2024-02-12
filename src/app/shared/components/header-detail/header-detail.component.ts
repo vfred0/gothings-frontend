@@ -18,7 +18,7 @@ export class HeaderDetailComponent implements OnInit {
     this.headerDetail = {} as HeaderDetail;
     this.clickedPhoto = new EventEmitter<void>();
     this.withDescription = false;
-    this.withClickedPhoto = false;
+    this.withClickedPhoto = true;
   }
 
   onClickedPhoto() {
