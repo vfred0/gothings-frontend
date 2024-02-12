@@ -60,6 +60,6 @@
   <gothings-button (click)="this.publishArticle()"
                    [description]="'Publicar artículo'"
                    [icon]="Icon.Save"
-                   [isDisabled]="this.formGroup.invalid"
+                   [isDisabled]="!this.containsImages || this.formGroup.invalid"
                    [buttonType]="ButtonType.Primary" />
 </div>
