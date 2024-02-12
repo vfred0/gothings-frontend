@@ -37,8 +37,8 @@ export function toCamelCase(name: string): string {
 }
 
 export function getValue<T>(
-  value: string,
-  enumObject: T
+  enumObject: T,
+  value: string
 ): T[keyof T] | undefined {
   const camelCaseValue = toCamelCase(value) as keyof T;
   return enumObject[camelCaseValue];

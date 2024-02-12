@@ -48,24 +48,6 @@ const routes: Array<IRoute> = [
     withPreferencesAndButtonEditProfile: true,
   },
   {
-    path: AppRoute.Exchanges,
-    title: 'Intercambios',
-    withMenu: true,
-    withHeader: true,
-    withBack: false,
-    withPreferences: true,
-    withPreferencesAndButtonEditProfile: true,
-  },
-  {
-    path: AppRoute.ArticleSuggest,
-    title: 'Proponer artículo',
-    withMenu: false,
-    withHeader: true,
-    withBack: true,
-    withPreferences: false,
-    withPreferencesAndButtonEditProfile: false,
-  },
-  {
     path: AppRoute.Profile,
     title: 'Perfil',
     withMenu: true,
@@ -82,15 +64,6 @@ const routes: Array<IRoute> = [
     withBack: true,
     withPreferences: true,
     withPreferencesAndButtonEditProfile: false,
-  },
-  {
-    path: AppRoute.ProfileProposedArticles,
-    title: 'Artículos propuestos',
-    withMenu: false,
-    withHeader: true,
-    withBack: true,
-    withPreferences: true,
-    withPreferencesAndButtonEditProfile: true,
   },
 ];
 let route = '';
