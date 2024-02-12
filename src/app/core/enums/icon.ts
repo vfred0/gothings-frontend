@@ -17,4 +17,6 @@ export enum Icon {
   Login = 'login',
   Whatsapp = 'whatsapp',
   View = 'view',
+  Like = 'like',
+  Dislike = 'dislike',
 }
