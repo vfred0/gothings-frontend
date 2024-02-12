@@ -1,1 +1,19 @@
-<p>home works!</p>
+<div class="c-home-page  {{getLayout()}}" [formGroup]="this.formGroup">
+  <span class="o-text-xl-bold">Explorar</span>
+
+  <div class="c-home-page__inputs">
+    <gothings-input [formGroupName]="'title'" />
+    <gothings-select [formGroupName]="'category'" [options]="this.categories" />
+    <gothings-select [formGroupName]="'state'" [label]="'Ordenar por estado:'"
+                     [options]="this.states" />
+  </div>
+
+  @if (this.homeService.isWorking()) {
+    <span class="o-text-xl-bold">Cargando...</span>
+  }
+
+  @for (articleCard of this.homeService.articlesCards; track articleCard.id) {
+    <gothings-article-card [articleCard]="articleCard" />
+
+  }
+</div>
