@@ -1,34 +1,33 @@
-<form [formGroup]="this.formSelect">
-  <div class="c-select">
+<div class="c-select" [formGroupName]="this.formGroupName">
 
-    @if (this.withTitle) {
-      <span class="o-text-base-medium">{{ this.title }}</span>
-    }
+  @if (this.withTitle) {
+    <span class="o-text-base-medium">{{ this.title }}</span>
+  }
 
-    <div class="c-select__container">
-      <select
-        class="c-select__content o-text-base-medium"
-        formControlName="select">
-        <option
-          *ngFor="let option of this.options"
-          [ngValue]="option"
-          class="c-select__option">
-          {{ this.label }} {{ option }}
-        </option>
-      </select>
-      <div class="c-select__icon">
-        <svg-icon
-          [applyClass]="true"
-          [class]="'c-select__icon o-icon-size-lg'"
-          src="assets/icons/arrow.svg"></svg-icon>
-      </div>
+  <div class="c-select__container">
+    <select
+      class="c-select__content o-text-base-medium"
+      formControlName="select">
+      <option
+        *ngFor="let option of this.options"
+        [ngValue]="option"
+        class="c-select__option">
+        {{ this.label }} {{ option }}
+      </option>
+    </select>
+    <div class="c-select__icon">
+      <svg-icon
+        [applyClass]="true"
+        [class]="'c-select__icon o-icon-size-lg'"
+        src="assets/icons/arrow.svg"></svg-icon>
     </div>
+  </div>
 
-    @if (this.withIncludes) {
-      <div class="c-select__includes">
+  @if (this.withIncludes) {
+    <div class="c-select__includes">
         <span class="o-text-sm-light">
           Esta categoría incluye: {{ this.categoryIncludes }}</span>
-      </div>
-    }
-  </div>
-</form>
+    </div>
+  }
+</div>
+

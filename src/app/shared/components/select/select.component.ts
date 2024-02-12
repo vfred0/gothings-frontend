@@ -1,34 +1,47 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Component, inject, Input, OnDestroy, OnInit } from '@angular/core';
+import {
+  ControlContainer,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { Category } from '@core/enums/category';
-import { CategoryService } from '@shared/services/category/category.service.dto';
-import { containsValue } from '@shared/utils/enum.util';
+import { CategoryService } from '@shared/services/category/category.service';
 
 @Component({
   standalone: true,
   selector: 'gothings-select',
   imports: [CommonModule, ReactiveFormsModule, AngularSvgIconModule],
   templateUrl: './select.component.html',
+  viewProviders: [
+    {
+      provide: ControlContainer,
+      useFactory: () => inject(ControlContainer, { skipSelf: true }),
+    },
+  ],
 })
-export class SelectComponent implements OnInit {
-  @Output() selectedOption: EventEmitter<string>;
+export class SelectComponent implements OnInit, OnDestroy {
   @Input() options: string[];
   @Input() optionSelected: string;
   @Input() title: string;
   @Input() label: string;
+  @Input() formGroupName: string;
   categoryIncludes: string;
   formSelect: FormGroup;
+  parentContainer: ControlContainer;
 
   constructor() {
     this.title = '';
     this.label = '';
-    this.selectedOption = new EventEmitter<string>();
     this.options = [];
     this.formSelect = new FormGroup({});
     this.optionSelected = '';
     this.categoryIncludes = '';
+    this.parentContainer = inject(ControlContainer);
+    this.formGroupName = '';
   }
 
   get withTitle(): boolean {
@@ -44,22 +57,28 @@ export class SelectComponent implements OnInit {
       this.optionSelected = this.options[0];
     }
     this.formSelect = new FormGroup({
-      select: new FormControl(this.optionSelected),
+      select: new FormControl(this.optionSelected, [Validators.required]),
     });
+
+    this.getControl().addControl(this.formGroupName, this.formSelect);
 
     this.formSelect.get('select')?.valueChanges.subscribe(optionSelected => {
-      this.selectedOption.emit(optionSelected);
-      this.updateIncludes(optionSelected);
+      this.updateCategoryIncludes(optionSelected);
     });
-    this.selectedOption.emit(this.optionSelected);
-    this.updateIncludes(this.optionSelected);
+    this.updateCategoryIncludes(this.optionSelected);
   }
 
-  private updateIncludes(optionSelected: string) {
-    if (containsValue(Category, optionSelected)) {
-      this.categoryIncludes = new CategoryService().getIncludes(
-        optionSelected as Category
-      );
-    }
+  private updateCategoryIncludes(optionSelected: string) {
+    this.categoryIncludes = new CategoryService().getIncludes(
+      optionSelected as Category
+    );
+  }
+
+  ngOnDestroy() {
+    this.getControl().removeControl(this.formGroupName);
+  }
+
+  private getControl() {
+    return this.parentContainer.control as FormGroup;
   }
 }
