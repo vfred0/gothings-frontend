@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 
 import { Icon } from '@core/enums/icon';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { ButtonComponent } from '@shared/components/button/button.component';
 import { ButtonType } from '@core/enums/button-type';
 import { ParseDate } from '@core/utils/parse-date';
@@ -29,6 +29,10 @@ export class ArticleCardComponent {
   }
 
   navigateToViewArticle() {
-    this.router.navigate([`${AppRoute.Article}/${this.articleCard.id}`]).then();
+    this.router
+      .navigate([`${AppRoute.Article}/${this.articleCard.id}`], {
+        state: { article: this.articleCard } as NavigationExtras,
+      })
+      .then();
   }
 }

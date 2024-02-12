@@ -1,7 +1,7 @@
 <div (click)="this.navigateToViewArticle()" class="c-article-card c-article-card--normal">
   <img alt="{{ this.articleCard.title }}"
        class="c-article-card__image"
-       src="{{ this.articleCard.image }}" />
+       src="{{ this.articleCard.images[0] }}" />
   <div class="c-article-card__content">
     <div class="c-article-card__category-date o-text-sm-light">
       <span class="c-article-card__category o-text-ellipsis">{{ this.articleCard.category }}</span>
