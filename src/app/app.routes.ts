@@ -33,6 +33,11 @@ export const routes: Routes = [
     canActivate: [userIsAuthenticated],
   },
   {
+    path: `${AppRoute.Article}/:id`,
+    loadComponent: () => import('@pages/article/article.page'),
+    canActivate: [userIsAuthenticated],
+  },
+  {
     path: '**',
     redirectTo: '',
   },
