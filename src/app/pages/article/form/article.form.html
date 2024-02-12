@@ -1,0 +1,65 @@
+{{ this.articleForm }}
+
+<div class="c-publish-article-page {{getLayout()}}" [formGroup]="this.formGroup">
+  <gothings-input [icon]="Icon.Edit"
+                  [placeholder]="'Ingresa el nombre del artículo'"
+                  [validators]="[Validators.required, Validators.maxLength(60)]"
+                  [errorMessage]="'El título es obligatorio y debe tener un máximo de 60 caracteres'"
+                  [value]="this.articleForm.title"
+                  [formGroupName]="'title'"
+                  [title]="'Título'" />
+  @if (this.isInvalid('title')) {
+    <span class="o-text-sm-bold">El título es obligatorio y debe tener un máximo de 60 caracteres</span>
+  }
+
+  <gothings-select [formGroupName]="'category'"
+                   [options]="this.categories"
+                   [optionSelected]="this.articleForm.category"
+                   [title]="'Categorías'" />
+
+  <div [class.double-column]="this.withGender" class="c-publish-article-page__gender-state">
+    @if (this.withGender) {
+      <gothings-select [formGroupName]="'gender'"
+                       [options]="this.genders"
+                       [optionSelected]="this.articleForm.gender"
+                       [title]="'Género'" />
+    }
+    <gothings-select [formGroupName]="'state'"
+                     [options]="this.states"
+                     [optionSelected]="this.articleForm.state"
+                     [title]="'Estado'" />
+  </div>
+  <gothings-input [isTextArea]="true"
+                  [placeholder]="'Ingresa la descripción del artículo'"
+                  [validators]="[Validators.required, Validators.maxLength(250)]"
+                  [errorMessage]="'La descripción es obligatoria y debe tener un máximo de 250 caracteres'"
+                  [formGroupName]="'description'"
+                  [title]="'Descripción'"
+                  [value]="this.articleForm.description" />
+
+  @if (this.isInvalid('description')) {
+    <span class="o-text-sm-bold">La descripción es obligatoria y debe tener un máximo de 250 caracteres</span>
+  }
+
+  <span class="o-text-xl-semibold">Galería</span>
+  <gothings-gallery [images]="this.articleForm.images" />
+  <div [class.c-publish-article-page__gallery-buttons]="this.containsImages">
+    <gothings-button-select-image (imageSelected)="this.onImageSelected($event)" />
+    @if (this.containsImages) {
+      <gothings-button (click)="this.deleteImages()"
+                       [description]="'Eliminar fotos'"
+                       [icon]="Icon.Delete"
+                       [buttonType]="ButtonType.Secondary" />
+    } @else {
+      <span class="o-text-sm-bold">Por favor, selecciona al menos una imagen...</span>
+    }
+  </div>
+  @if (this.formGroup.touched && this.formGroup.invalid) {
+    <span class="o-text-sm-bold">Por favor, antes de publicar el artículo, completa los campos obligatorios...</span>
+  }
+  <gothings-button (click)="this.publishArticle()"
+                   [description]="'Publicar artículo'"
+                   [icon]="Icon.Save"
+                   [isDisabled]="this.formGroup.invalid"
+                   [buttonType]="ButtonType.Primary" />
+</div>
