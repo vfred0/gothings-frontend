@@ -7,7 +7,7 @@ export interface ArticleResponseDto {
   id: string;
   title: string;
   description: string;
-  date: Date;
+  date: string;
   category: Category;
   state: State;
   gender: Gender;
@@ -16,4 +16,3 @@ export interface ArticleResponseDto {
   likes: number;
   dislikes: number;
 }
-
