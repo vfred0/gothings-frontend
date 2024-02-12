@@ -4,7 +4,6 @@ import { InputComponent } from '@shared/components/input/input.component';
 import { SelectComponent } from '@shared/components/select/select.component';
 import { ButtonSelectImageComponent } from '@shared/components/button/button-select-image/button-select-image.component';
 import { ButtonComponent } from '@shared/components/button/button.component';
-import { getLayout } from '@core/utils/app-route.util';
 import { Icon } from '@core/enums/icon';
 import { ButtonType } from '@core/enums/button-type';
 import { getAllValues, getKey } from '@core/utils/enum.util';
@@ -38,7 +37,6 @@ import { AppRoute } from '@core/enums/app-route';
 })
 export default class ArticleForm implements AfterViewInit {
   protected readonly Validators = Validators;
-  protected readonly getLayout = getLayout;
   protected readonly ButtonType = ButtonType;
   @ViewChild(GalleryComponent) gallery!: GalleryComponent;
   formGroup: FormGroup;

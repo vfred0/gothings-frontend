@@ -1,6 +1,4 @@
-{{ this.articleForm }}
-
-<div class="c-publish-article-page {{getLayout()}}" [formGroup]="this.formGroup">
+<div class="c-publish-article-page" [formGroup]="this.formGroup">
   <gothings-input [icon]="Icon.Edit"
                   [placeholder]="'Ingresa el nombre del artículo'"
                   [validators]="[Validators.required, Validators.maxLength(60)]"
