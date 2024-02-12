@@ -39,7 +39,6 @@ export class InputComponent implements OnInit, OnDestroy {
   @Input() isTextArea: boolean;
   @Input() validators: ValidatorFn[];
   @Output() showError: EventEmitter<boolean>;
-  @Output() textChanged: EventEmitter<string>;
   @Input() formGroupName: string;
   private inputForm: FormGroup;
   parentContainer: ControlContainer;
@@ -53,7 +52,6 @@ export class InputComponent implements OnInit, OnDestroy {
     this.value = '';
     this.errorMessage = '';
     this.showError = new EventEmitter<boolean>();
-    this.textChanged = new EventEmitter<string>();
     this.inputForm = new FormGroup({});
     this.validators = [];
     this.formGroupName = '';
@@ -66,10 +64,6 @@ export class InputComponent implements OnInit, OnDestroy {
     });
 
     this.getControl().addControl(this.formGroupName, this.inputForm);
-
-    this.inputValue.valueChanges.subscribe(value => {
-      this.textChanged.emit(value);
-    });
   }
 
   ngOnDestroy() {

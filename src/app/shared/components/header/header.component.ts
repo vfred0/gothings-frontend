@@ -13,7 +13,7 @@ import {
   isWithBack,
   isWithPreferences,
   setRoute,
-} from '@shared/utils/app-route.util';
+} from '@core/utils/app-route.util';
 import { HeaderDetail } from '@core/models/header-detail';
 import { AppRoute } from '@core/enums/app-route';
 import { ButtonType } from '@core/enums/button-type';
