@@ -43,4 +43,8 @@ export class ArticleService {
       this.getToken()
     );
   }
+
+  deleteById(id: string) {
+    return this.http.delete<void>(`${this.API_URL}/${id}`, this.getToken());
+  }
 }
