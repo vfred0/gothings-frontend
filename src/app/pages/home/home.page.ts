@@ -38,6 +38,8 @@ export default class HomePage implements AfterViewInit {
   state: State;
   readonly homeService: HomeService;
   private readonly filterArticleDto: FilterArticleDto;
+  protected readonly Icon = Icon;
+  protected readonly ButtonType = ButtonType;
 
   constructor() {
     this.categories = getAllValues(Category);
@@ -77,9 +79,6 @@ export default class HomePage implements AfterViewInit {
   private getSelectedValue(value: string) {
     return this.formGroup.get(value)?.value.select;
   }
-
-  protected readonly Icon = Icon;
-  protected readonly ButtonType = ButtonType;
 
   getResultLabel() {
     const totalArticlesCards = this.homeService.totalArticlesCards;
