@@ -102,4 +102,8 @@ export class AuthService {
   getToken() {
     return this.session.token;
   }
+
+  isCurrentUser(userId: string) {
+    return this.session.id === userId;
+  }
 }
