@@ -20,7 +20,10 @@
     "@angular/router": "^17.1.0",
     "@auth0/angular-jwt": "^5.2.0",
     "angular-svg-icon": "^17.0.0",
+    "dayjs": "^1.11.10",
+    "relativeTime": "link:dayjs/plugin/relativeTime",
     "rxjs": "~7.8.0",
+    "swiper": "^11.0.6",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
   },
