@@ -1,6 +1,6 @@
 .c-edit-profile-page {
   gap: $em-24;
-
+  @include layout-with-header();
   &__upload-photo {
     @include row($em-24);
   }
