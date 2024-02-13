@@ -1,5 +1,6 @@
 .c-publish-article-page {
   @include column($em-24);
+  @include layout-with-header();
 
   &__gender-state {
     display: grid;

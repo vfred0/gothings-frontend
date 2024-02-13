@@ -3,7 +3,6 @@
   @include layout-with-header();
 
   &__inputs {
-
     @include column($em-16);
   }
 

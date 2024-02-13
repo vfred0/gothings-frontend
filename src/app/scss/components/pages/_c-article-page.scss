@@ -57,4 +57,9 @@
       flex-direction: column;
     }
   }
+
+  &__action-buttons {
+    @include row($em-8);
+    margin: 0 auto;
+  }
 }
