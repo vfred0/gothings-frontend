@@ -3,7 +3,7 @@ import { AppRoute } from '@core/enums/app-route';
 
 export const routes: Routes = [
   {
-    path: '',
+    path: AppRoute.Home,
     loadComponent: () =>
       import('@pages/article/explore-articles/explore-articles.page').then(
         m => m.ExploreArticlesPage
