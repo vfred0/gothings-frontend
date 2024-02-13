@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, inject } from '@angular/core';
+import { AfterViewInit, Component, inject, Input } from '@angular/core';
 import { HeaderComponent } from '@shared/components/header/header.component';
 import { InputComponent } from '@shared/components/input/input.component';
 import { SelectComponent } from '@shared/components/select/select.component';
@@ -9,14 +9,15 @@ import { Category as CategoryType } from '@core/types/category.type';
 import { State } from '@core/enums/state';
 import { State as StateType } from '@core/types/state.type';
 import { FilterArticleDto } from '@core/dtos/article/filter-article.dto';
-import { HomeService } from '@shared/services/home.service';
 import { ArticleCardComponent } from '@shared/components/article-card/article-card.component';
 import { ButtonComponent } from '@shared/components/button/button.component';
 import { Icon } from '@core/enums/icon';
 import { ButtonType } from '@core/enums/button-type';
+import { HomeService } from '@shared/services/home.service';
+import { MyArticleService } from '@shared/services/my-article.service';
 
 @Component({
-  selector: 'gothings-home',
+  selector: 'gothings-explore-articles',
   standalone: true,
   imports: [
     HeaderComponent,
@@ -26,18 +27,18 @@ import { ButtonType } from '@core/enums/button-type';
     ArticleCardComponent,
     ButtonComponent,
   ],
-  templateUrl: './home.page.html',
+  templateUrl: './explore-articles.page.html',
 })
-export default class HomePage implements AfterViewInit {
+export class ExploreArticlesPage implements AfterViewInit {
   formGroup: FormGroup;
   categories: string[];
   states: string[];
   category: Category;
   state: State;
-  readonly homeService: HomeService;
   private readonly filterArticleDto: FilterArticleDto;
   protected readonly Icon = Icon;
   protected readonly ButtonType = ButtonType;
+  @Input() service: HomeService | MyArticleService;
 
   constructor() {
     this.categories = getAllValues(Category);
@@ -52,7 +53,7 @@ export default class HomePage implements AfterViewInit {
     ) as CategoryType;
     this.filterArticleDto.state = getKey(State, this.state) as StateType;
     this.filterArticleDto.title = '';
-    this.homeService = inject(HomeService);
+    this.service = inject(HomeService);
   }
 
   ngAfterViewInit() {
@@ -66,7 +67,7 @@ export default class HomePage implements AfterViewInit {
         this.getSelectedValue('state')
       ) as StateType;
       this.filterArticleDto.title = this.getInputValue('title');
-      this.homeService.search(this.filterArticleDto);
+      this.service.search(this.filterArticleDto);
     });
   }
 
@@ -79,7 +80,7 @@ export default class HomePage implements AfterViewInit {
   }
 
   getResultLabel() {
-    const totalArticlesCards = this.homeService.totalArticlesCards;
+    const totalArticlesCards = this.service.totalArticlesCards;
     if (totalArticlesCards == 0) {
       return 'No existen artículos';
     }

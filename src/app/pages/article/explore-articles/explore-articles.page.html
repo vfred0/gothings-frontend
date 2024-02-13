@@ -2,7 +2,7 @@
 
   <div class="c-home-page__title-get-all">
     <span class="o-text-xl-bold">Explorar</span>
-    <gothings-button [description]="'Mostrar todos'" [icon]="Icon.Search" (click)="this.homeService.showAll()"
+    <gothings-button [description]="'Mostrar todos'" [icon]="Icon.View" (click)="this.service.getAll()"
                      [buttonType]="ButtonType.Secondary" />
   </div>
 
@@ -13,19 +13,17 @@
                      [options]="this.states" />
   </div>
 
-  @if (this.homeService.isWorking()) {
+  @if (this.service.isWorking()) {
     <span class="o-text-xl-bold">Cargando...</span>
   }
 
-  @if (this.homeService.isCompleted()) {
+  @if (this.service.isCompleted()) {
     <span class="o-text-lg-semibold"> {{ this.getResultLabel() }}</span>
 
-      <div class="o-layout-article-cards">
-    @for (articleCard of this.homeService.articlesCards; track articleCard.id) {
+    <div class="o-layout-article-cards">
+      @for (articleCard of this.service.articlesCards; track articleCard.id) {
         <gothings-article-card [articleCard]="articleCard" />
-    }
-      </div>
+      }
+    </div>
   }
-
-
 </div>
