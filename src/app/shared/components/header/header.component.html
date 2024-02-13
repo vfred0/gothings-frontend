@@ -30,7 +30,11 @@
         [description]="'Inicio'"
         [icon]="Icon.Home"
         [buttonType]="ButtonType.Secondary" />
-
+      <gothings-button
+        (click)="this.navigateToMyArticles()"
+        [description]="'Mis artículos'"
+        [icon]="Icon.View"
+        [buttonType]="ButtonType.Secondary" />
       <gothings-button
         (click)="this.navigateToEditProfile()"
         [description]="'Editar perfil'"

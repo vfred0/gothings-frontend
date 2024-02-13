@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule, Location, NgOptimizedImage } from '@angular/common';
 import { AngularSvgIconModule } from 'angular-svg-icon';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
 import { Icon } from '@core/enums/icon';
 import { AuthService } from '@shared/services/auth.service';
 import { ButtonComponent } from '@shared/components/button/button.component';
@@ -27,6 +27,7 @@ import { ButtonType } from '@core/enums/button-type';
     ButtonComponent,
     NgOptimizedImage,
     HeaderDetailComponent,
+    RouterLink,
   ],
   templateUrl: './header.component.html',
 })
@@ -125,5 +126,10 @@ export class HeaderComponent implements OnInit {
       this.valueTranslate = 20;
     }
     return this.valueTranslate;
+  }
+
+  navigateToMyArticles() {
+    this.router.navigate([AppRoute.MyArticles]).then();
+    this.togglePreferences();
   }
 }
