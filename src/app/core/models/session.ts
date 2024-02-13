@@ -5,4 +5,6 @@ export interface Session {
   username: string;
   roles: string[];
   token: string;
+  numberWhatsapp: string;
+  about: string;
 }
