@@ -93,9 +93,7 @@ export class HeaderComponent implements OnInit {
   }
 
   navigateToEditProfile() {
-    this.router
-      .navigate([`${AppRoute.Profile}/${AppRoute.EditProfile}`])
-      .then();
+    this.router.navigate([`${AppRoute.Profile}`]).then();
     this.togglePreferences();
   }
 
