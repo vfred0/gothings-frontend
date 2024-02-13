@@ -9,24 +9,7 @@ export const routes: Routes = [
   },
   {
     path: AppRoute.Home,
-    loadChildren: () =>
-      import('@pages/article/article.routes').then(m => m.routes),
-    canActivate: [userIsAuthenticated],
-  },
-  {
-    path: AppRoute.Article,
-    loadComponent: () => import('@pages/article/article.page'),
-    canActivate: [userIsAuthenticated],
-  },
-  {
-    path: `${AppRoute.EditArticle}/:id`,
-    loadComponent: () =>
-      import('@pages/article/update-article/update-article.form'),
-    canActivate: [userIsAuthenticated],
-  },
-  {
-    path: AppRoute.PublishArticle,
-    loadComponent: () => import('@pages/article/new-article/new-article.form'),
+    loadChildren: () => import('@pages/article/article.routes'),
     canActivate: [userIsAuthenticated],
   },
   {

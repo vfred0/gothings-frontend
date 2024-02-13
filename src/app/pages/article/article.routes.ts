@@ -32,3 +32,5 @@ export const routes: Routes = [
     loadComponent: () => import('@pages/article/my-articles/my-articles.page'),
   },
 ];
+
+export default routes;
