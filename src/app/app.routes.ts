@@ -13,14 +13,8 @@ export const routes: Routes = [
     canActivate: [userIsAuthenticated],
   },
   {
-    path: `${AppRoute.Article}/:id`,
-    loadComponent: () => import('@pages/article/article.page'),
-    canActivate: [userIsAuthenticated],
-  },
-
-  {
-    path: `${AppRoute.MyArticles}`,
-    loadComponent: () => import('@pages/article/my-articles/my-articles.page'),
+    path: AppRoute.Profile,
+    loadComponent: () => import('@pages/profile/profile.page'),
     canActivate: [userIsAuthenticated],
   },
   {
