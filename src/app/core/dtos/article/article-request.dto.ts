@@ -3,6 +3,7 @@ import { State } from '@core/types/state.type';
 import { Gender } from '@core/types/gender.type';
 
 export interface ArticleRequestDto {
+  id?: string;
   title: string;
   description: string;
   category: Category;
