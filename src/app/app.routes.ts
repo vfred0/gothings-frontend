@@ -18,13 +18,9 @@ export const routes: Routes = [
     canActivate: [userIsAuthenticated],
   },
   {
-    path: AppRoute.EditProfile,
-    loadComponent: () => import('@pages/profile/profile.page'),
-    canActivate: [userIsAuthenticated],
-  },
-  {
-    path: AppRoute.PublishArticle,
-    loadComponent: () => import('@pages/article/form/article.form'),
+    path: `${AppRoute.EditArticle}/:id`,
+    loadComponent: () =>
+      import('@pages/article/update-article/update-article.form'),
     canActivate: [userIsAuthenticated],
   },
   {
