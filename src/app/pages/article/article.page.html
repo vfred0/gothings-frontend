@@ -24,6 +24,10 @@
     <span class="o-text-xl-semibold">Publicador</span>
     <div class="c-article-page__user-card">
       <gothings-header-detail [headerDetail]="this.headerDetail" />
+      @if (this.articleCard.user.about) {
+      <span class="o-text-normal-medium">{{ this.articleCard.user.about }}</span>
+      }
+
     </div>
     <span class="o-text-xl-semibold">Galería</span>
     <gothings-gallery [images]="this.articleCard.images" />
