@@ -78,6 +78,10 @@ export class AuthService {
     return Object.keys(this.session).length !== 0;
   }
 
+  get user() {
+    return this.session;
+  }
+
   getUserNames() {
     return this.session.names;
   }
@@ -105,5 +109,13 @@ export class AuthService {
 
   isCurrentUser(userId: string) {
     return this.session.id === userId;
+  }
+
+  setUser(userDto: UserDto) {
+    this.session.names = userDto.names;
+    this.session.photo = userDto.photo;
+    this.session.numberWhatsapp = userDto.numberWhatsapp;
+    this.session.about = userDto.about;
+    localStorage.setItem('session', JSON.stringify(this.session));
   }
 }
