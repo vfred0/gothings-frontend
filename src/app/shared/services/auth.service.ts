@@ -7,6 +7,7 @@ import { Observable, tap } from 'rxjs';
 import { AccessTokenDto } from '@core/dtos/auth/access-token.dto';
 import { Session } from '@core/models/session';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { UserDto } from '@core/dtos/user.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -43,6 +44,8 @@ export class AuthService {
     this.session.username = decodeToken.sub;
     this.session.roles = decodeToken.scope;
     this.session.photo = decodeToken.photo;
+    this.session.numberWhatsapp = decodeToken.numberWhatsapp;
+    this.session.about = decodeToken.about;
     if (this.session.photo === '') {
       this.session.photo = 'assets/default-profile.jpg';
     }
