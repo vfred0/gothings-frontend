@@ -28,7 +28,10 @@ export class ArticleCard {
       Category,
       article.category as Category
     ) as Category;
-    this.gender = getValue(Gender, article.gender as Gender) as Gender;
+    this.gender = Gender.Unisex;
+    if (article.gender !== null) {
+      this.gender = getValue(Gender, article.gender as Gender) as Gender;
+    }
     this.state = getValue(State, article.state as State) as State;
     this.likes = article.likes;
     this.dislikes = article.dislikes;
