@@ -1,0 +1,54 @@
+<div class="c-edit-profile-page" [formGroup]="this.formGroup">
+  <div class="c-edit-profile-page__upload-photo">
+    <img [alt]="this.authService.user.username" class="c-edit-profile-page__photo" src="{{this.photo}}" />
+    <gothings-button-select-image (imageSelected)="this.onImageSelected($event)" />
+  </div>
+  <gothings-input [icon]="Icon.Profile"
+                  [errorMessage]="'El nombre de usuario es requerido'"
+                  [placeholder]="'Ingrese su nombre de usuario'"
+                  [validators]="[Validators.required, Validators.minLength(6), Validators.maxLength(10)]"
+                  [formGroupName]="'username'"
+                  [value]="this.authService.user.username"
+                  [title]="'Usuario'" />
+  @if (this.isInvalid('username')) {
+    <span class="o-text-sm-semibold">El nombre de usuario debe tener un mínimo de 6 y máximo 10 caracteres </span>
+  }
+  <gothings-input [icon]="Icon.Profile"
+                  [errorMessage]="'Los nombres son requerido'"
+                  [placeholder]="'Ingrese su nombres'"
+                  [validators]="[Validators.required, Validators.minLength(3), Validators.maxLength(60)]"
+                  [formGroupName]="'names'"
+                  [value]="this.authService.user.names"
+                  [title]="'Nombres'" />
+  @if (this.isInvalid('names')) {
+    <span class="o-text-sm-semibold">Los nombres debe tener un mínimo de 3 y máximo 60 caracteres </span>
+  }
+  <gothings-input [isTextArea]="true"
+                  [placeholder]="'Escribe una descripción de ti'"
+                  [validators]="[Validators.required, Validators.maxLength(250)]"
+                  [errorMessage]="'La descripción es obligatoria y debe tener un máximo de 250 caracteres'"
+                  [formGroupName]="'about'"
+                  [title]="'Descripción'"
+                  [value]="this.authService.user.about" />
+  @if (this.isInvalid('description')) {
+    <span class="o-text-sm-semibold">La descripción es obligatoria y debe tener un máximo de 250 caracteres</span>
+  }
+  <gothings-input [icon]="Icon.Whatsapp"
+                  [placeholder]="'Escribe tu número de WhatsApp'"
+                  [title]="'WhatsApp'"
+                  [formGroupName]="'numberWhatsapp'"
+                  [validators]="[Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^[0-9]*$')]"
+                  [value]="this.authService.user.numberWhatsapp" />
+  @if (this.isInvalid('numberWhatsapp')) {
+    <span class="o-text-sm-semibold">El número de WhatsApp debe tener 10 dígitos</span>
+  }
+  @if (this.formGroup.touched && this.formGroup.invalid) {
+    <span class="o-text-sm-bold">Por favor, antes de editar el perfil, completa los campos obligatorios...</span>
+  }
+
+  @if (this.existsErrorMessage()) {
+    <span class="o-text-sm-semibold">{{ this.errorMessage }}</span>
+  }
+
+  <gothings-button (click)="this.onEditProfile()" [description]="'Guardar cambios'" [icon]="Icon.Save"  [isDisabled]="this.formGroup.invalid" />
+</div>
