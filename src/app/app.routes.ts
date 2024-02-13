@@ -9,7 +9,10 @@ export const routes: Routes = [
   },
   {
     path: AppRoute.Home,
-    loadComponent: () => import('@pages/home/home.page'),
+    loadComponent: () =>
+      import('@pages/article/explore-articles/explore-articles.page').then(
+        m => m.ExploreArticlesPage
+      ),
     canActivate: [userIsAuthenticated],
   },
   {
@@ -31,6 +34,12 @@ export const routes: Routes = [
   {
     path: `${AppRoute.Article}/:id`,
     loadComponent: () => import('@pages/article/article.page'),
+    canActivate: [userIsAuthenticated],
+  },
+
+  {
+    path: `${AppRoute.MyArticles}`,
+    loadComponent: () => import('@pages/article/my-articles/my-articles.page'),
     canActivate: [userIsAuthenticated],
   },
   {
