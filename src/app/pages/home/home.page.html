@@ -20,9 +20,11 @@
   @if (this.homeService.isCompleted()) {
     <span class="o-text-lg-semibold"> {{ this.getResultLabel() }}</span>
 
+      <div class="o-layout-article-cards">
     @for (articleCard of this.homeService.articlesCards; track articleCard.id) {
-      <gothings-article-card [articleCard]="articleCard" />
+        <gothings-article-card [articleCard]="articleCard" />
     }
+      </div>
   }
 
 
