@@ -55,4 +55,11 @@ export class ArticleService {
       this.getToken()
     );
   }
+
+  searchByUserId(filterArticle: FilterArticleDto) {
+    return this.http.get<Array<ArticleResponseDto>>(
+      `${this.API_URL}/${this.authService.getUserId()}/search?title=${filterArticle.title}&category=${filterArticle.category}&state=${filterArticle.state}`,
+      this.getToken()
+    );
+  }
 }
