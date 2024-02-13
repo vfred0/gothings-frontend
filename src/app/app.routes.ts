@@ -25,7 +25,7 @@ export const routes: Routes = [
   },
   {
     path: AppRoute.PublishArticle,
-    loadComponent: () => import('@pages/article/form/article.form'),
+    loadComponent: () => import('@pages/article/new-article/new-article.form'),
     canActivate: [userIsAuthenticated],
   },
   {

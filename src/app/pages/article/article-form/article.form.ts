@@ -1,4 +1,12 @@
-import { AfterViewInit, Component, inject, ViewChild } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputComponent } from '@shared/components/input/input.component';
 import { SelectComponent } from '@shared/components/select/select.component';
@@ -18,12 +26,12 @@ import { GalleryComponent } from '@shared/components/gallery/gallery.component';
 import { ArticleFormModel } from '@core/models/article-form.model';
 import { CategoryService } from '@shared/services/category/category.service';
 import { ImageService } from '@shared/services/image.service';
-import { ArticleService } from '@shared/services/article.service';
 import { ArticleRequestDto } from '@core/dtos/article/article-request.dto';
+import { ArticleService } from '@shared/services/article.service';
 import { Router } from '@angular/router';
-import { AppRoute } from '@core/enums/app-route';
 
 @Component({
+  selector: 'gothings-article-form',
   standalone: true,
   imports: [
     InputComponent,
@@ -38,30 +46,33 @@ import { AppRoute } from '@core/enums/app-route';
 export default class ArticleForm implements AfterViewInit {
   protected readonly Validators = Validators;
   protected readonly ButtonType = ButtonType;
-  @ViewChild(GalleryComponent) gallery!: GalleryComponent;
-  formGroup: FormGroup;
   protected readonly Icon = Icon;
+  @ViewChild(GalleryComponent) gallery!: GalleryComponent;
   categories: string[];
   genders: string[];
   states: string[];
-  articleForm: ArticleFormModel;
-  withGender: boolean;
   errorMessage: string;
   private readonly imageService: ImageService;
-  private readonly articleService: ArticleService;
-  private readonly router: Router;
+  @Input() articleForm: ArticleFormModel;
+  @Output() actionButton: EventEmitter<ArticleRequestDto>;
+
+  protected readonly router: Router;
+  protected readonly articleService: ArticleService;
+  protected formGroup: FormGroup;
+  protected withGender: boolean;
 
   constructor() {
+    this.imageService = inject(ImageService);
     this.categories = getAllValues(Category);
     this.states = getAllValues(State);
-    this.formGroup = new FormGroup({});
     this.genders = getAllValues(Gender);
     this.articleForm = new ArticleFormModel();
+    this.formGroup = new FormGroup({});
     this.withGender = false;
-    this.imageService = inject(ImageService);
+    this.errorMessage = '';
+    this.actionButton = new EventEmitter<ArticleRequestDto>();
     this.articleService = inject(ArticleService);
     this.router = inject(Router);
-    this.errorMessage = '';
   }
 
   ngAfterViewInit() {
@@ -70,48 +81,27 @@ export default class ArticleForm implements AfterViewInit {
     });
   }
 
-  publishArticle() {
-    const articleRequestDto = this.getArticleRequestDto();
-    this.articleService.save(articleRequestDto).subscribe({
-      next: () => {
-        this.router.navigate([AppRoute.Home]).then();
-        this.formGroup.reset();
-      },
-      error: error => {
-        this.errorMessage = error.error.message;
-        console.error(error);
-      },
-    });
-  }
-
-  private getArticleRequestDto() {
-    this.setValuesInArticleForm();
+  protected getArticleRequestDto() {
     const articleRequestDto: ArticleRequestDto = {
-      title: this.articleForm.title,
-      description: this.articleForm.description,
-      category: getKey(Category, this.articleForm.category) as CategoryType,
-      state: getKey(State, this.articleForm.state) as StateType,
+      id: this.articleForm.id,
+      title: this.getInputValue('title'),
+      description: this.getInputValue('description'),
+      category: getKey(
+        Category,
+        this.getSelectedValue('category')
+      ) as CategoryType,
+      state: getKey(State, this.getSelectedValue('state')) as StateType,
       images: this.articleForm.images,
     };
 
     if (this.withGender) {
       articleRequestDto.gender = getKey(
         Gender,
-        this.articleForm.gender
+        this.getSelectedValue('gender')
       ) as GenderType;
     }
 
     return articleRequestDto;
-  }
-
-  private setValuesInArticleForm() {
-    this.articleForm.title = this.getInputValue('title');
-    this.articleForm.description = this.getInputValue('description');
-    this.articleForm.category = this.getSelectedValue('category');
-    this.articleForm.state = this.getSelectedValue('state');
-    if (this.withGender) {
-      this.articleForm.gender = this.getSelectedValue('gender');
-    }
   }
 
   get containsImages() {
@@ -143,5 +133,9 @@ export default class ArticleForm implements AfterViewInit {
     return (
       this.formGroup.get(value)?.touched && this.formGroup.get(value)?.invalid
     );
+  }
+
+  onActionButton() {
+    this.actionButton.emit(this.getArticleRequestDto());
   }
 }

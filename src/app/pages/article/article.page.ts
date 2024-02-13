@@ -54,11 +54,15 @@ export default class ArticlePage {
   }
 
   onEditArticle() {
-    this.router.navigate([AppRoute.EditArticle, this.articleCard.id]).then();
+    this.router
+      .navigate([AppRoute.EditArticle, this.articleCard.id], {
+        state: { article: this.articleCard },
+      })
+      .then();
   }
 
   onDeleteArticle() {
-    this.articleService.deleteById(this.articleCard.id);
+    this.articleService.deleteById(this.articleCard.id).subscribe();
     this.router.navigate([AppRoute.Home]).then();
   }
 }

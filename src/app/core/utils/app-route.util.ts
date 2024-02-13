@@ -3,7 +3,6 @@ import { AppRoute } from '@core/enums/app-route';
 interface IRoute {
   path: string;
   title: string;
-  withMenu: boolean;
   withHeader: boolean;
   withBack: boolean;
   withPreferences: boolean;
@@ -14,7 +13,6 @@ const routes: Array<IRoute> = [
   {
     path: AppRoute.Home,
     title: 'Inicio',
-    withMenu: true,
     withHeader: true,
     withBack: false,
     withPreferences: true,
@@ -23,7 +21,6 @@ const routes: Array<IRoute> = [
   {
     path: AppRoute.Article,
     title: 'Artículo',
-    withMenu: false,
     withHeader: true,
     withBack: true,
     withPreferences: true,
@@ -32,7 +29,6 @@ const routes: Array<IRoute> = [
   {
     path: AppRoute.PublishArticle,
     title: 'Publicar artículo',
-    withMenu: true,
     withHeader: true,
     withBack: false,
     withPreferences: true,
@@ -41,7 +37,6 @@ const routes: Array<IRoute> = [
   {
     path: AppRoute.EditArticle,
     title: 'Editar artículo',
-    withMenu: false,
     withHeader: true,
     withBack: true,
     withPreferences: true,
@@ -50,7 +45,6 @@ const routes: Array<IRoute> = [
   {
     path: AppRoute.Profile,
     title: 'Perfil',
-    withMenu: true,
     withHeader: true,
     withBack: false,
     withPreferences: true,
@@ -59,7 +53,6 @@ const routes: Array<IRoute> = [
   {
     path: AppRoute.ProfileEditProfile,
     title: 'Editar perfil',
-    withMenu: false,
     withHeader: true,
     withBack: true,
     withPreferences: true,
@@ -81,11 +74,6 @@ export function setRoute(routeParam: string): void {
 
 export function isEqualsRoute(routeCompare: string): boolean {
   return routeCompare === route;
-}
-
-export function isWithMenu(): boolean {
-  const preference = getRoutePreference();
-  return preference ? preference.withMenu : false;
 }
 
 function getRoutePreference() {
@@ -121,11 +109,6 @@ export function getRouteTitle(): string {
 
 export function isArticleRoute(): boolean {
   return route === AppRoute.Article;
-}
-
-export function getLayout(): string {
-  const className = 'o-layout';
-  return isWithMenu() ? `${className}-with-menu` : `${className}-without-menu`;
 }
 
 export function isHomeRoute(): boolean {

@@ -55,7 +55,7 @@
   @if (this.formGroup.touched && this.formGroup.invalid) {
     <span class="o-text-sm-bold">Por favor, antes de publicar el artículo, completa los campos obligatorios...</span>
   }
-  <gothings-button (click)="this.publishArticle()"
+  <gothings-button (click)="this.onActionButton()"
                    [description]="'Publicar artículo'"
                    [icon]="Icon.Save"
                    [isDisabled]="!this.containsImages || this.formGroup.invalid"
