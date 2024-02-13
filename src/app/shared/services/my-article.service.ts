@@ -8,7 +8,7 @@ import { ArticleCard } from '@core/models/article-card';
 import { UserService } from '@shared/services/user.service';
 
 @Injectable({ providedIn: 'root' })
-export class HomeService extends Service<ArticleCard[]> {
+export class MyArticleService extends Service<ArticleCard[]> {
   private readonly articleService: ArticleService = inject(ArticleService);
   private readonly userService: UserService = inject(UserService);
 
@@ -25,7 +25,7 @@ export class HomeService extends Service<ArticleCard[]> {
   }
 
   search(filterArticle: FilterArticleDto): void {
-    const request = this.articleService.search(filterArticle).pipe(
+    const request = this.articleService.searchByUserId(filterArticle).pipe(
       map((articles: ArticleResponseDto[]) => {
         return articles.map((article: ArticleResponseDto) => {
           return new ArticleCard(article);
@@ -36,7 +36,7 @@ export class HomeService extends Service<ArticleCard[]> {
   }
 
   getAll() {
-    const request = this.articleService.getAll().pipe(
+    const request = this.userService.getArticles().pipe(
       map((articles: ArticleResponseDto[]) => {
         return articles.map((article: ArticleResponseDto) => {
           return new ArticleCard(article);
