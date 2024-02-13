@@ -5,12 +5,10 @@ import { ArticleResponseDto } from '@core/dtos/article/article-response.dto';
 import { ArticleService } from '@shared/services/article.service';
 import { map } from 'rxjs';
 import { ArticleCard } from '@core/models/article-card';
-import { UserService } from '@shared/services/user.service';
 
 @Injectable({ providedIn: 'root' })
 export class HomeService extends Service<ArticleCard[]> {
   private readonly articleService: ArticleService = inject(ArticleService);
-  private readonly userService: UserService = inject(UserService);
 
   constructor() {
     super([] as ArticleCard[]);
