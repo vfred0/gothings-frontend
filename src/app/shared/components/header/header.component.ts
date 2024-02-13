@@ -41,6 +41,7 @@ export class HeaderComponent implements OnInit {
   headerDetail: HeaderDetail;
 
   @Input() isWithPreferences: boolean;
+  valueTranslate: number;
 
   constructor(
     private router: Router,
@@ -54,6 +55,7 @@ export class HeaderComponent implements OnInit {
     this.isWithBack = false;
     this.isForArticlePage = false;
     this.headerDetail = {} as HeaderDetail;
+    this.valueTranslate = 30;
   }
 
   ngOnInit(): void {
@@ -106,5 +108,22 @@ export class HeaderComponent implements OnInit {
 
   get isWithButtonUserManagement(): boolean {
     return this.authService.isUserAdmin();
+  }
+
+  navigateToPublishArticle() {
+    this.router.navigate([AppRoute.PublishArticle]).then();
+    this.togglePreferences();
+  }
+
+  navigateToHome() {
+    this.router.navigate([AppRoute.Home]).then();
+    this.togglePreferences();
+  }
+
+  getValueTranslate() {
+    if (this.isWithButtonUserManagement) {
+      this.valueTranslate = 20;
+    }
+    return this.valueTranslate;
   }
 }

@@ -12,19 +12,35 @@
   </div>
 
   @if (this.isWithPreferences && this.showPreferences) {
-    <div class="c-header__preferences">
-      <gothings-button
-        (click)="this.navigateToEditProfile()"
-        [description]="'Editar perfil'"
-        [icon]="Icon.Edit"
-        [buttonType]="ButtonType.Secondary" />
+    <div class="c-header__preferences o-translate-{{this.getValueTranslate()}}">
       @if (this.isWithButtonUserManagement) {
         <gothings-button
           (click)="this.navigateToEditProfile()"
           [description]="'Gestión de usuarios'"
           [icon]="Icon.Edit"
           [buttonType]="ButtonType.Secondary" />
+      <gothings-button
+          (click)="this.navigateToEditProfile()"
+          [description]="'Gestión de usuarios'"
+          [icon]="Icon.Edit"
+          [buttonType]="ButtonType.Secondary" />
       }
+      <gothings-button
+        (click)="this.navigateToHome()"
+        [description]="'Inicio'"
+        [icon]="Icon.Home"
+        [buttonType]="ButtonType.Secondary" />
+
+      <gothings-button
+        (click)="this.navigateToEditProfile()"
+        [description]="'Editar perfil'"
+        [icon]="Icon.Edit"
+        [buttonType]="ButtonType.Secondary" />
+      <gothings-button
+        (click)="this.navigateToPublishArticle()"
+        [description]="'Publicar artículo'"
+        [icon]="Icon.Save"
+        [buttonType]="ButtonType.Secondary" />
       <gothings-button
         (click)="this.onLogout()"
         [description]="'Cerrar sesión'"
