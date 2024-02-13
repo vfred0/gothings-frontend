@@ -53,10 +53,6 @@ export class AuthService {
     localStorage.setItem('session', JSON.stringify(this.session));
   }
 
-  existsUser() {
-    return this.session != null;
-  }
-
   destroySession() {
     this.session = {} as Session;
     localStorage.removeItem('session');
