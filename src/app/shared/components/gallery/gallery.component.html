@@ -1,11 +1,11 @@
 <div class="c-gallery">
   <swiper-container class="c-gallery__container" navigation="true" zoom="true">
-    <ng-container *ngFor="let image of this.images">
+    @for (image of this.images; track image) {
       <swiper-slide>
         <div class="swiper-zoom-container">
           <img alt="" class="c-gallery__image" src="{{ image }}" />
         </div>
       </swiper-slide>
-    </ng-container>
+    }
   </swiper-container>
 </div>

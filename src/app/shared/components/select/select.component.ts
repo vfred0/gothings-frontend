@@ -24,24 +24,18 @@ import { CategoryService } from '@shared/services/category/category.service';
   ],
 })
 export class SelectComponent implements OnInit, OnDestroy {
-  @Input() options: string[];
-  @Input() optionSelected: string;
-  @Input() title: string;
-  @Input() label: string;
-  @Input() formGroupName: string;
-  categoryIncludes: string;
+  @Input() options!: string[];
+  @Input() optionSelected!: string;
+  @Input() title!: string;
+  @Input() label!: string;
+  @Input() formGroupName!: string;
+  categoryIncludes!: string;
   formSelect: FormGroup;
   parentContainer: ControlContainer;
 
   constructor() {
-    this.title = '';
-    this.label = '';
-    this.options = [];
     this.formSelect = new FormGroup({});
-    this.optionSelected = '';
-    this.categoryIncludes = '';
     this.parentContainer = inject(ControlContainer);
-    this.formGroupName = '';
   }
 
   get withTitle(): boolean {
@@ -69,15 +63,13 @@ export class SelectComponent implements OnInit, OnDestroy {
   }
 
   private updateCategoryIncludes(optionSelected: string) {
-    if (optionSelected !== undefined) {
-      this.categoryIncludes = new CategoryService().getIncludes(
-        optionSelected as Category
-      );
-    }
+    this.categoryIncludes = new CategoryService().getIncludes(
+      optionSelected as Category
+    );
   }
 
   ngOnDestroy() {
-    //this.getControl().removeControl(this.formGroupName);
+    this.getControl().removeControl(this.formGroupName);
   }
 
   private getControl() {

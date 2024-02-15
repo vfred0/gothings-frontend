@@ -14,14 +14,13 @@ export class ButtonComponent {
   @Input() description: string;
   @Input() buttonType: ButtonType;
   @Input() icon: string;
-  @Input() isDisabled: boolean;
+  @Input() isDisabled!: boolean;
   @Input() selected!: boolean;
 
   constructor() {
     this.buttonType = ButtonType.Primary;
     this.description = this.buttonType;
     this.icon = 'hand';
-    this.isDisabled = false;
   }
 
   get fontSize(): string {

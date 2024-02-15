@@ -30,31 +30,24 @@ import { Icon } from '@core/enums/icon';
   ],
 })
 export class InputComponent implements OnInit, OnDestroy {
-  @Input() title: string;
+  @Input() title!: string;
   @Input() icon: Icon;
-  @Input() value: string;
-  @Input() errorMessage: string;
-  @Input() placeholder: string;
+  @Input() value!: string;
+  @Input() errorMessage!: string;
+  @Input() placeholder!: string;
   @Input() type: string;
-  @Input() isTextArea: boolean;
-  @Input() validators: ValidatorFn[];
+  @Input() isTextArea!: boolean;
+  @Input() validators!: ValidatorFn[];
   @Output() showError: EventEmitter<boolean>;
-  @Input() formGroupName: string;
+  @Input() formGroupName!: string;
   private inputForm: FormGroup;
   parentContainer: ControlContainer;
 
   constructor() {
     this.icon = Icon.Search;
-    this.isTextArea = false;
-    this.placeholder = '';
-    this.title = '';
     this.type = 'text';
-    this.value = '';
-    this.errorMessage = '';
     this.showError = new EventEmitter<boolean>();
     this.inputForm = new FormGroup({});
-    this.validators = [];
-    this.formGroupName = '';
     this.parentContainer = inject(ControlContainer);
   }
 
