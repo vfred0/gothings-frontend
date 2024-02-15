@@ -91,8 +91,9 @@ export class AuthService {
 
   isUserAdmin() {
     const token = this.session.token;
-    //return this.jwtHelperService.decodeToken(token).scope.includes('admin');
-    return true;
+    return this.jwtHelperService
+      .decodeToken(token)
+      .scope.includes('ROLE_ADMIN');
   }
 
   getUserRol(): string {
