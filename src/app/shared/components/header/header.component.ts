@@ -6,17 +6,10 @@ import { Icon } from '@core/enums/icon';
 import { AuthService } from '@shared/services/auth.service';
 import { ButtonComponent } from '@shared/components/button/button.component';
 import { HeaderDetailComponent } from '@shared/components/header-detail/header-detail.component';
-import {
-  getRouteTitle,
-  isArticleRoute,
-  isHomeRoute,
-  isWithBack,
-  isWithPreferences,
-  setRoute,
-} from '@core/utils/app-route.util';
 import { HeaderDetail } from '@core/models/header-detail';
-import { AppRoutePage } from '@core/enums/app-route-page';
+import { RoutePage } from '@core/enums/route-page';
 import { ButtonType } from '@core/enums/button-type';
+import { RoutePageUtil } from '@core/utils/route-page.util';
 
 @Component({
   selector: 'gothings-header',
@@ -32,91 +25,74 @@ import { ButtonType } from '@core/enums/button-type';
   templateUrl: './header.component.html',
 })
 export class HeaderComponent implements OnInit {
-  protected readonly ButtonType = ButtonType;
-  protected readonly Icon = Icon;
-  isForArticlePage: boolean;
-  showPreferences: boolean;
-  showHeader: boolean;
-  isWithButtonEditProfile: boolean;
-  isWithBack: boolean;
+  isForArticlePage!: boolean;
+  _showHeader!: boolean;
+  isWithBack!: boolean;
   headerDetail: HeaderDetail;
 
-  @Input() isWithPreferences: boolean;
+  @Input() isWithPreferences!: boolean;
   valueTranslate: number;
+  showPreferences!: boolean;
+
+  protected readonly ButtonType = ButtonType;
+  protected readonly Icon = Icon;
+  protected readonly AppRoutePage = RoutePage;
+  private readonly routePage: RoutePageUtil;
 
   constructor(
     private router: Router,
     private location: Location,
     private authService: AuthService
   ) {
-    this.showPreferences = false;
-    this.showHeader = false;
-    this.isWithPreferences = false;
-    this.isWithButtonEditProfile = false;
-    this.isWithBack = false;
-    this.isForArticlePage = false;
     this.headerDetail = {} as HeaderDetail;
     this.valueTranslate = 30;
+    this.routePage = new RoutePageUtil();
+  }
+
+  private showHeader(event: NavigationEnd) {
+    return !event.url.includes(RoutePage.Auth);
   }
 
   ngOnInit(): void {
-    function showHeader(event: NavigationEnd) {
-      return !event.url.includes(AppRoutePage.Auth);
-    }
-
     this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd && showHeader(event)) {
-        this.showHeader = showHeader(event);
+      if (event instanceof NavigationEnd && this.showHeader(event)) {
+        this._showHeader = this.showHeader(event);
         const currentUrl = event.url;
-        setRoute(currentUrl);
-        this.isWithPreferences = isWithPreferences();
-        this.isWithBack = isWithBack();
+        this.routePage.setRoute(currentUrl);
+        this.isWithBack = this.routePage.isWithBack();
         this.headerDetail.title = this.authService.getUserNames();
         this.headerDetail.photo = this.authService.getUserPhoto();
         this.headerDetail.description = this.authService.getUserRol();
-        if (!isHomeRoute()) {
-          this.headerDetail.title = getRouteTitle();
+        if (!this.routePage.isHomeRoute()) {
+          this.headerDetail.title = this.routePage.getRouteTitle();
         }
-        this.isForArticlePage = isArticleRoute();
+        this.isForArticlePage = this.routePage.isArticleRoute();
       }
     });
   }
 
   togglePreferences() {
-    if (this.isWithPreferences) {
-      this.showPreferences = !this.showPreferences;
-    }
+    this.showPreferences = !this.showPreferences;
   }
 
   redirectToBack() {
     this.location.back();
   }
 
-  navigateToEditProfile() {
-    this.router.navigate([AppRoutePage.Profile]).then();
+  navigateTo(appRoutePage: RoutePage) {
+    this.router.navigate([appRoutePage]).then();
     this.togglePreferences();
   }
 
   onLogout() {
     window.location.reload();
-    this.showHeader = false;
+    this._showHeader = false;
     this.authService.destroySession();
-    this.router.navigate([AppRoutePage.AuthLogin]).then();
-    this.togglePreferences();
+    this.navigateTo(RoutePage.AuthLogin);
   }
 
   get isWithButtonUserManagement(): boolean {
     return this.authService.isUserAdmin();
-  }
-
-  navigateToPublishArticle() {
-    this.router.navigate([AppRoutePage.PublishArticle]).then();
-    this.togglePreferences();
-  }
-
-  navigateToHome() {
-    this.router.navigate([AppRoutePage.Home]).then();
-    this.togglePreferences();
   }
 
   getValueTranslate() {
@@ -124,20 +100,5 @@ export class HeaderComponent implements OnInit {
       this.valueTranslate = 20;
     }
     return this.valueTranslate;
-  }
-
-  navigateToMyArticles() {
-    this.router.navigate([AppRoutePage.MyArticles]).then();
-    this.togglePreferences();
-  }
-
-  navigateToUserManagement() {
-    this.router.navigate([AppRoutePage.UserManagement]).then();
-    this.togglePreferences();
-  }
-
-  navigateToRoleManagement() {
-    this.router.navigate([AppRoutePage.RoleManagement]).then();
-    this.togglePreferences();
   }
 }

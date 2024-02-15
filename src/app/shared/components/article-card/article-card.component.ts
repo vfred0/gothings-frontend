@@ -5,7 +5,7 @@ import { Icon } from '@core/enums/icon';
 import { NavigationExtras, Router } from '@angular/router';
 import { ButtonComponent } from '@shared/components/button/button.component';
 import { ButtonType } from '@core/enums/button-type';
-import { AppRoutePage } from '@core/enums/app-route-page';
+import { RoutePage } from '@core/enums/route-page';
 import { ArticleCard } from '@core/models/article-card';
 
 @Component({
@@ -25,7 +25,7 @@ export class ArticleCardComponent {
 
   navigateToViewArticle() {
     this.router
-      .navigate([`${AppRoutePage.Article}/${this.articleCard.id}`], {
+      .navigate([`${RoutePage.Article}/${this.articleCard.id}`], {
         state: { article: this.articleCard } as NavigationExtras,
       })
       .then();

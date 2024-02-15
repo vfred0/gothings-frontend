@@ -1,4 +1,4 @@
-export enum AppRoutePage {
+export enum RoutePage {
   Home = '',
   Auth = 'auth',
   AuthLogin = 'auth/login',

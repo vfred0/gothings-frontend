@@ -9,7 +9,7 @@ import { GalleryComponent } from '@shared/components/gallery/gallery.component';
 import { Icon } from '@core/enums/icon';
 import { ButtonType } from '@core/enums/button-type';
 import { HeaderDetail } from '@core/models/header-detail';
-import { AppRoutePage } from '@core/enums/app-route-page';
+import { RoutePage } from '@core/enums/route-page';
 import { ArticleService } from '@shared/services/article.service';
 import { ParseDate } from '@core/utils/parse-date';
 
@@ -58,7 +58,7 @@ export default class ArticlePage {
 
   onEditArticle() {
     this.router
-      .navigate([AppRoutePage.EditArticle, this.articleCard.id], {
+      .navigate([RoutePage.EditArticle, this.articleCard.id], {
         state: { article: this.articleCard },
       })
       .then();
@@ -66,6 +66,6 @@ export default class ArticlePage {
 
   onDeleteArticle() {
     this.articleService.deleteById(this.articleCard.id).subscribe();
-    this.router.navigate([AppRoutePage.Home]).then();
+    this.router.navigate([RoutePage.Home]).then();
   }
 }

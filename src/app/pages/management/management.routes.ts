@@ -1,9 +1,9 @@
 import { Routes } from '@angular/router';
-import { AppRoutePage } from '@core/enums/app-route-page';
+import { RoutePage } from '@core/enums/route-page';
 
 export const routes: Routes = [
   {
-    path: AppRoutePage.UserManagement,
+    path: RoutePage.UserManagement,
     loadComponent: () =>
       import('@pages/management/user-management/user-management.page'),
   },

@@ -1,4 +1,4 @@
-@if (this.showHeader) {
+@if (this._showHeader) {
   <div [ngClass]="{ 'c-header--is-for-article-page': isForArticlePage,
     'c-header--is-with-preferences': isWithPreferences}"
        class="c-header o-layout-max-width">
@@ -11,37 +11,37 @@
     }
   </div>
 
-  @if (this.isWithPreferences && this.showPreferences) {
+  @if (this.showPreferences) {
     <div class="c-header__preferences o-translate-{{this.getValueTranslate()}}">
       <gothings-button
-        (click)="this.navigateToHome()"
+        (click)="this.navigateTo(AppRoutePage.Home)"
         [description]="'Inicio'"
         [icon]="Icon.Home"
         [buttonType]="ButtonType.Secondary" />
       @if (this.isWithButtonUserManagement) {
         <gothings-button
-          (click)="this.navigateToUserManagement()"
+          (click)="this.navigateTo(AppRoutePage.UserManagement)"
           [description]="'Gestión de usuarios'"
           [icon]="Icon.Edit"
           [buttonType]="ButtonType.Secondary" />
         <gothings-button
-          (click)="this.navigateToRoleManagement()"
+          (click)="this.navigateTo(AppRoutePage.RoleManagement)"
           [description]="'Gestión de roles'"
           [icon]="Icon.Edit"
           [buttonType]="ButtonType.Secondary" />
       }
       <gothings-button
-        (click)="this.navigateToMyArticles()"
+        (click)="this.navigateTo(AppRoutePage.MyArticles)"
         [description]="'Mis artículos'"
         [icon]="Icon.View"
         [buttonType]="ButtonType.Secondary" />
       <gothings-button
-        (click)="this.navigateToEditProfile()"
+        (click)="this.navigateTo(AppRoutePage.EditArticle)"
         [description]="'Editar perfil'"
         [icon]="Icon.Edit"
         [buttonType]="ButtonType.Secondary" />
       <gothings-button
-        (click)="this.navigateToPublishArticle()"
+        (click)="this.navigateTo(AppRoutePage.PublishArticle)"
         [description]="'Publicar artículo'"
         [icon]="Icon.Save"
         [buttonType]="ButtonType.Secondary" />

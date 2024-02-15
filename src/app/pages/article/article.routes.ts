@@ -1,35 +1,35 @@
 import { Routes } from '@angular/router';
-import { AppRoutePage } from '@core/enums/app-route-page';
+import { RoutePage } from '@core/enums/route-page';
 
 export const routes: Routes = [
   {
-    path: AppRoutePage.Home,
+    path: RoutePage.Home,
     loadComponent: () =>
       import('@pages/article/views/explore-articles/explore-articles.page'),
   },
   {
-    path: AppRoutePage.Article,
+    path: RoutePage.Article,
     loadComponent: () =>
       import('@pages/article/views/article-page/article.page'),
   },
   {
-    path: `${AppRoutePage.EditArticle}/:id`,
+    path: `${RoutePage.EditArticle}/:id`,
     loadComponent: () =>
       import('@pages/article/management/update-article/update-article.form'),
   },
   {
-    path: AppRoutePage.PublishArticle,
+    path: RoutePage.PublishArticle,
     loadComponent: () =>
       import('@pages/article/management/new-article/new-article.form'),
   },
   {
-    path: `${AppRoutePage.Article}/:id`,
+    path: `${RoutePage.Article}/:id`,
     loadComponent: () =>
       import('@pages/article/views/article-page/article.page'),
   },
 
   {
-    path: `${AppRoutePage.MyArticles}`,
+    path: `${RoutePage.MyArticles}`,
     loadComponent: () =>
       import('@pages/article/views/my-articles/my-articles.page'),
   },

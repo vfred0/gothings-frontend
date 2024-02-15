@@ -1,13 +1,13 @@
 import { Routes } from '@angular/router';
-import { AppRoutePage } from '@core/enums/app-route-page';
+import { RoutePage } from '@core/enums/route-page';
 
 const routes: Routes = [
   {
-    path: AppRoutePage.Login,
+    path: RoutePage.Login,
     loadComponent: () => import('@pages/auth/login/login.page'),
   },
   {
-    path: AppRoutePage.Register,
+    path: RoutePage.Register,
     loadComponent: () => import('@pages/auth/register/register.page'),
   },
 ];

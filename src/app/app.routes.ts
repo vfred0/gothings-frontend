@@ -1,11 +1,11 @@
 import { Routes } from '@angular/router';
-import { AppRoutePage } from '@core/enums/app-route-page';
+import { RoutePage } from '@core/enums/route-page';
 import { userIsAuthenticated } from '@shared/guards/auth.guard';
 import { userGrantedAccess } from '@shared/guards/role.guard';
 
 export const routes: Routes = [
   {
-    path: AppRoutePage.Auth,
+    path: RoutePage.Auth,
     loadChildren: () => import('@pages/auth/auth.routes'),
   },
   {
@@ -19,7 +19,7 @@ export const routes: Routes = [
     canActivate: [userIsAuthenticated, userGrantedAccess],
   },
   {
-    path: AppRoutePage.Profile,
+    path: RoutePage.Profile,
     loadComponent: () => import('@pages/profile/profile.page'),
     canActivate: [userIsAuthenticated],
   },
