@@ -31,25 +31,26 @@ export default class ProfilePage {
   userService: UserService;
   formGroup: FormGroup;
   photo: string;
-  errorMessage: string;
+  errorMessage!: string;
+  message!: string;
 
   constructor() {
     this.authService = inject(AuthService);
     this.imageService = inject(ImageService);
     this.userService = inject(UserService);
     this.formGroup = new FormGroup({});
-    this.photo = '';
-    this.errorMessage = '';
     this.photo = this.authService.user.photo;
   }
 
   onEditProfile() {
     const userDto: UserDto = toDto(this.formGroup.value);
-    userDto.photo = this.photo;
+    if (!this.authService.isDefaultPhoto(this.photo)) {
+      userDto.photo = this.photo;
+    }
     this.userService.editProfile(userDto).subscribe({
       next: () => {
         this.authService.setUser(userDto);
-        window.location.reload();
+        this.message = 'Se han guardado los cambios';
       },
       error: e => (this.errorMessage = e.error.message),
     });
