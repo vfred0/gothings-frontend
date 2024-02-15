@@ -11,19 +11,19 @@
   }
 
   <gothings-select [formGroupName]="'category'"
-                   [options]="this.categories"
+                   [options]="getAllValues(Category)"
                    [optionSelected]="this.articleForm.category"
                    [title]="'Categorías'" />
 
   <div [class.double-column]="this.withGender" class="c-publish-article-page__gender-state">
     @if (this.withGender) {
       <gothings-select [formGroupName]="'gender'"
-                       [options]="this.genders"
+                       [options]="getAllValues(Gender)"
                        [optionSelected]="this.articleForm.gender"
                        [title]="'Género'" />
     }
     <gothings-select [formGroupName]="'state'"
-                     [options]="this.states"
+                     [options]="getAllValues(State)"
                      [optionSelected]="this.articleForm.state"
                      [title]="'Estado'" />
   </div>
