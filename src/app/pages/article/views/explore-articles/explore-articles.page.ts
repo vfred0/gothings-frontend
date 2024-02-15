@@ -90,3 +90,5 @@ export class ExploreArticlesPage implements AfterViewInit {
     return `${totalArticlesCards} artículos`;
   }
 }
+
+export default ExploreArticlesPage;

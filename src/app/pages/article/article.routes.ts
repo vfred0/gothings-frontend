@@ -5,9 +5,7 @@ export const routes: Routes = [
   {
     path: AppRoute.Home,
     loadComponent: () =>
-      import(
-        '@pages/article/views/explore-articles/explore-articles.page'
-      ).then(m => m.ExploreArticlesPage),
+      import('@pages/article/views/explore-articles/explore-articles.page'),
   },
   {
     path: AppRoute.Article,
