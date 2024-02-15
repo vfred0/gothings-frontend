@@ -1,4 +1,4 @@
-import { AppRoute } from '@core/enums/app-route';
+import { AppRoutePage } from '@core/enums/app-route-page';
 
 interface IRoute {
   path: string;
@@ -11,7 +11,7 @@ interface IRoute {
 
 const routes: Array<IRoute> = [
   {
-    path: AppRoute.Home,
+    path: AppRoutePage.Home,
     title: 'Inicio',
     withHeader: true,
     withBack: false,
@@ -19,7 +19,7 @@ const routes: Array<IRoute> = [
     withPreferencesAndButtonEditProfile: true,
   },
   {
-    path: AppRoute.Article,
+    path: AppRoutePage.Article,
     title: 'Artículo',
     withHeader: true,
     withBack: true,
@@ -27,7 +27,7 @@ const routes: Array<IRoute> = [
     withPreferencesAndButtonEditProfile: true,
   },
   {
-    path: AppRoute.PublishArticle,
+    path: AppRoutePage.PublishArticle,
     title: 'Publicar artículo',
     withHeader: true,
     withBack: false,
@@ -35,7 +35,7 @@ const routes: Array<IRoute> = [
     withPreferencesAndButtonEditProfile: true,
   },
   {
-    path: AppRoute.EditArticle,
+    path: AppRoutePage.EditArticle,
     title: 'Editar artículo',
     withHeader: true,
     withBack: true,
@@ -43,7 +43,7 @@ const routes: Array<IRoute> = [
     withPreferencesAndButtonEditProfile: true,
   },
   {
-    path: AppRoute.Profile,
+    path: AppRoutePage.Profile,
     title: 'Perfil',
     withHeader: true,
     withBack: false,
@@ -51,7 +51,7 @@ const routes: Array<IRoute> = [
     withPreferencesAndButtonEditProfile: true,
   },
   {
-    path: AppRoute.ProfileEditProfile,
+    path: AppRoutePage.ProfileEditProfile,
     title: 'Editar perfil',
     withHeader: true,
     withBack: true,
@@ -59,7 +59,7 @@ const routes: Array<IRoute> = [
     withPreferencesAndButtonEditProfile: false,
   },
   {
-    path: AppRoute.MyArticles,
+    path: AppRoutePage.MyArticles,
     title: 'Mis artículos',
     withHeader: true,
     withBack: true,
@@ -67,7 +67,7 @@ const routes: Array<IRoute> = [
     withPreferencesAndButtonEditProfile: false,
   },
   {
-    path: AppRoute.UserManagement,
+    path: AppRoutePage.UserManagement,
     title: 'Gestión de usuarios',
     withHeader: true,
     withBack: true,
@@ -124,9 +124,9 @@ export function getRouteTitle(): string {
 }
 
 export function isArticleRoute(): boolean {
-  return route === AppRoute.Article;
+  return route === AppRoutePage.Article;
 }
 
 export function isHomeRoute(): boolean {
-  return route === AppRoute.Home;
+  return route === AppRoutePage.Home;
 }

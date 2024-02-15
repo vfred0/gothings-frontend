@@ -1,4 +1,4 @@
-export enum AppRoute {
+export enum AppRoutePage {
   Home = '',
   Auth = 'auth',
   AuthLogin = 'auth/login',
@@ -7,12 +7,10 @@ export enum AppRoute {
   Login = 'login',
   Register = 'register',
   Profile = 'profile',
-  EditProfile = 'edit-profile',
   Article = 'article',
   PublishArticle = 'publish-article',
   EditArticle = 'edit-article',
   MyArticles = 'my-articles',
-  Management = 'management',
   UserManagement = 'management/users',
   RoleManagement = 'roles',
 }

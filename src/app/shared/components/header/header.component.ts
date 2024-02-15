@@ -15,7 +15,7 @@ import {
   setRoute,
 } from '@core/utils/app-route.util';
 import { HeaderDetail } from '@core/models/header-detail';
-import { AppRoute } from '@core/enums/app-route';
+import { AppRoutePage } from '@core/enums/app-route-page';
 import { ButtonType } from '@core/enums/button-type';
 
 @Component({
@@ -61,7 +61,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     function showHeader(event: NavigationEnd) {
-      return !event.url.includes(AppRoute.Auth);
+      return !event.url.includes(AppRoutePage.Auth);
     }
 
     this.router.events.subscribe(event => {
@@ -93,7 +93,7 @@ export class HeaderComponent implements OnInit {
   }
 
   navigateToEditProfile() {
-    this.router.navigate([AppRoute.Profile]).then();
+    this.router.navigate([AppRoutePage.Profile]).then();
     this.togglePreferences();
   }
 
@@ -101,7 +101,7 @@ export class HeaderComponent implements OnInit {
     window.location.reload();
     this.showHeader = false;
     this.authService.destroySession();
-    this.router.navigate([AppRoute.AuthLogin]).then();
+    this.router.navigate([AppRoutePage.AuthLogin]).then();
     this.togglePreferences();
   }
 
@@ -110,12 +110,12 @@ export class HeaderComponent implements OnInit {
   }
 
   navigateToPublishArticle() {
-    this.router.navigate([AppRoute.PublishArticle]).then();
+    this.router.navigate([AppRoutePage.PublishArticle]).then();
     this.togglePreferences();
   }
 
   navigateToHome() {
-    this.router.navigate([AppRoute.Home]).then();
+    this.router.navigate([AppRoutePage.Home]).then();
     this.togglePreferences();
   }
 
@@ -127,17 +127,17 @@ export class HeaderComponent implements OnInit {
   }
 
   navigateToMyArticles() {
-    this.router.navigate([AppRoute.MyArticles]).then();
+    this.router.navigate([AppRoutePage.MyArticles]).then();
     this.togglePreferences();
   }
 
   navigateToUserManagement() {
-    this.router.navigate([AppRoute.UserManagement]).then();
+    this.router.navigate([AppRoutePage.UserManagement]).then();
     this.togglePreferences();
   }
 
   navigateToRoleManagement() {
-    this.router.navigate([AppRoute.RoleManagement]).then();
+    this.router.navigate([AppRoutePage.RoleManagement]).then();
     this.togglePreferences();
   }
 }

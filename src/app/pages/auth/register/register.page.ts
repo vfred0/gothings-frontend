@@ -7,7 +7,7 @@ import { RegisterRequestDto } from '@core/dtos/auth/register-request.dto';
 import { FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '@shared/services/auth.service';
 import { Router } from '@angular/router';
-import { AppRoute } from '@core/enums/app-route';
+import { AppRoutePage } from '@core/enums/app-route-page';
 import { toDto } from '@core/utils/form.util';
 
 @Component({
@@ -38,7 +38,7 @@ export default class RegisterPage {
   onRegister() {
     const registerRequestDto = toDto<RegisterRequestDto>(this.formGroup.value);
     this.authService.register(registerRequestDto).subscribe({
-      next: () => this.router.navigate([AppRoute.Home]).then(),
+      next: () => this.router.navigate([AppRoutePage.Home]).then(),
       error: e => (this.errorMessage = e.error.message),
     });
   }

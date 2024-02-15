@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import ArticleForm from '@pages/article/management/article-form/article.form';
-import { AppRoute } from '@core/enums/app-route';
+import { AppRoutePage } from '@core/enums/app-route-page';
 import { ArticleRequestDto } from '@core/dtos/article/article-request.dto';
 
 @Component({
@@ -16,7 +16,7 @@ export default class NewArticleForm extends ArticleForm {
   publishArticle(articleRequestDto: ArticleRequestDto) {
     this.articleService.save(articleRequestDto).subscribe({
       next: () => {
-        this.router.navigate([AppRoute.Home]).then();
+        this.router.navigate([AppRoutePage.Home]).then();
         this.formGroup.reset();
       },
       error: error => {

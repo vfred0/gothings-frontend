@@ -7,7 +7,7 @@ import { SvgIconComponent } from 'angular-svg-icon';
 import { LoginRequestDto } from '@core/dtos/auth/login-request.dto';
 import { Router } from '@angular/router';
 import { AuthService } from '@shared/services/auth.service';
-import { AppRoute } from '@core/enums/app-route';
+import { AppRoutePage } from '@core/enums/app-route-page';
 import { toDto } from '@core/utils/form.util';
 
 @Component({
@@ -43,7 +43,7 @@ export default class LoginPage {
     if (this.formGroup.valid) {
       const loginRequestDto = toDto<LoginRequestDto>(this.formGroup.value);
       this.authService.login(loginRequestDto).subscribe({
-        next: () => this.router.navigate([AppRoute.Home]).then(),
+        next: () => this.router.navigate([AppRoutePage.Home]).then(),
         error: error => {
           this.errorMessage = error.error.message;
           this.existsErrorInLogin = true;
@@ -56,7 +56,7 @@ export default class LoginPage {
   }
 
   onRegister() {
-    this.router.navigate([AppRoute.AuthRegister]).then();
+    this.router.navigate([AppRoutePage.AuthRegister]).then();
   }
 
   existsErrorInUsername() {

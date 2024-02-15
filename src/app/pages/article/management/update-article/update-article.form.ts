@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import ArticleForm from '@pages/article/management/article-form/article.form';
 import { ArticleCard } from '@core/models/article-card';
 import { ArticleRequestDto } from '@core/dtos/article/article-request.dto';
-import { AppRoute } from '@core/enums/app-route';
+import { AppRoutePage } from '@core/enums/app-route-page';
 import { CategoryService } from '@shared/services/category/category.service';
 
 @Component({
@@ -33,7 +33,7 @@ export default class UpdateArticleForm extends ArticleForm {
   updateArticle(articleRequestDto: ArticleRequestDto) {
     this.articleService.update(articleRequestDto).subscribe({
       next: () => {
-        this.router.navigate([AppRoute.Home]).then();
+        this.router.navigate([AppRoutePage.Home]).then();
       },
       error: error => {
         this.errorMessage = error.error.message;
