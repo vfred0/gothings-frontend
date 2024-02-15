@@ -13,7 +13,7 @@ import { ArticleCardComponent } from '@shared/components/article-card/article-ca
 import { ButtonComponent } from '@shared/components/button/button.component';
 import { Icon } from '@core/enums/icon';
 import { ButtonType } from '@core/enums/button-type';
-import { HomeService } from '@shared/services/home.service';
+import { ExploreArticlesService } from '@shared/services/explore-articles.service';
 import { MyArticleService } from '@shared/services/my-article.service';
 
 @Component({
@@ -38,7 +38,7 @@ export class ExploreArticlesPage implements AfterViewInit {
   private readonly filterArticleDto: FilterArticleDto;
   protected readonly Icon = Icon;
   protected readonly ButtonType = ButtonType;
-  @Input() service: HomeService | MyArticleService;
+  @Input() service: ExploreArticlesService | MyArticleService;
 
   constructor() {
     this.categories = getAllValues(Category);
@@ -53,7 +53,7 @@ export class ExploreArticlesPage implements AfterViewInit {
     ) as CategoryType;
     this.filterArticleDto.state = getKey(State, this.state) as StateType;
     this.filterArticleDto.title = '';
-    this.service = inject(HomeService);
+    this.service = inject(ExploreArticlesService);
   }
 
   ngAfterViewInit() {

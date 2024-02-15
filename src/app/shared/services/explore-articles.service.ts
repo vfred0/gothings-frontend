@@ -7,7 +7,7 @@ import { map } from 'rxjs';
 import { ArticleCard } from '@core/models/article-card';
 
 @Injectable({ providedIn: 'root' })
-export class HomeService extends Service<ArticleCard[]> {
+export class ExploreArticlesService extends Service<ArticleCard[]> {
   private readonly articleService: ArticleService = inject(ArticleService);
 
   constructor() {

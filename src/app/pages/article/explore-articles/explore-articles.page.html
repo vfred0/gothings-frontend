@@ -1,12 +1,12 @@
-<div class="c-home-page" [formGroup]="this.formGroup">
+<div class="c-explore-articles-page" [formGroup]="this.formGroup">
 
-  <div class="c-home-page__title-get-all">
+  <div class="c-explore-articles-page__title-get-all">
     <span class="o-text-xl-bold">Explorar</span>
     <gothings-button [description]="'Mostrar todos'" [icon]="Icon.View" (click)="this.service.getAll()"
                      [buttonType]="ButtonType.Secondary" />
   </div>
 
-  <div class="c-home-page__inputs">
+  <div class="c-explore-articles-page__inputs">
     <gothings-input [formGroupName]="'title'" />
     <gothings-select [formGroupName]="'category'" [options]="this.categories" />
     <gothings-select [formGroupName]="'state'" [label]="'Ordenar por estado:'"
