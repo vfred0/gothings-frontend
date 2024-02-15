@@ -4,8 +4,8 @@
        class="c-header-detail__photo" src="{{ this.headerDetail.photo}}"  />
   <div class="c-header-detail__title-description o-text-ellipsis">
     <span class="o-text-lg-bold o-text-ellipsis">{{ this.headerDetail.title }}</span>
-    @if (this.isAdmin()) {
-      <span class="o-text-sm-light o-text-ellipsis">Administrador</span>
+    @if (this.withDescription) {
+      <span class="o-text-sm-light o-text-ellipsis">{{ this.headerDetail.description }}</span>
     }
   </div>
 </div>

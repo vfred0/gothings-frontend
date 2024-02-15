@@ -69,13 +69,15 @@ export class SelectComponent implements OnInit, OnDestroy {
   }
 
   private updateCategoryIncludes(optionSelected: string) {
-    this.categoryIncludes = new CategoryService().getIncludes(
-      optionSelected as Category
-    );
+    if (optionSelected !== undefined) {
+      this.categoryIncludes = new CategoryService().getIncludes(
+        optionSelected as Category
+      );
+    }
   }
 
   ngOnDestroy() {
-    this.getControl().removeControl(this.formGroupName);
+    //this.getControl().removeControl(this.formGroupName);
   }
 
   private getControl() {

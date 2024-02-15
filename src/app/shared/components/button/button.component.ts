@@ -15,6 +15,7 @@ export class ButtonComponent {
   @Input() buttonType: ButtonType;
   @Input() icon: string;
   @Input() isDisabled: boolean;
+  @Input() selected!: boolean;
 
   constructor() {
     this.buttonType = ButtonType.Primary;
@@ -39,5 +40,17 @@ export class ButtonComponent {
 
   get isBack(): boolean {
     return isBack(this.buttonType);
+  }
+
+  getStyleButton(): string {
+    const clazz = 'c-button--';
+    if (this.isDisabled) {
+      return clazz.concat('disabled');
+    }
+    if (this.selected) {
+      return clazz.concat('selected');
+    }
+
+    return '';
   }
 }

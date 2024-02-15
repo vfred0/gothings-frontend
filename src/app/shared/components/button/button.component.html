@@ -1,4 +1,4 @@
-<button [disabled]="this.isDisabled" class="c-button c-button--{{ buttonType }}  c-button--{{this.isDisabled ? 'disabled' : ''}}">
+<button [disabled]="this.isDisabled" class="c-button c-button--{{ buttonType }} {{this.getStyleButton()}}">
   @if (!this.isBack) {
     <svg-icon
       [applyClass]="true"

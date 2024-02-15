@@ -7,4 +7,5 @@ export interface Session {
   token: string;
   numberWhatsapp: string;
   about: string;
+  createdAt: string;
 }

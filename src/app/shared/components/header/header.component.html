@@ -2,7 +2,7 @@
   <div [ngClass]="{ 'c-header--is-for-article-page': isForArticlePage,
     'c-header--is-with-preferences': isWithPreferences}"
        class="c-header o-layout-max-width">
-    <gothings-header-detail [headerDetail]="this.headerDetail"  (clickedPhoto)="this.togglePreferences()" />
+    <gothings-header-detail [headerDetail]="this.headerDetail" [withDescription]="false"  (clickedPhoto)="this.togglePreferences()" />
     @if (this.isWithBack) {
       <gothings-button
         (click)="this.redirectToBack()"
@@ -13,23 +13,23 @@
 
   @if (this.isWithPreferences && this.showPreferences) {
     <div class="c-header__preferences o-translate-{{this.getValueTranslate()}}">
-      @if (this.isWithButtonUserManagement) {
-        <gothings-button
-          (click)="this.navigateToEditProfile()"
-          [description]="'Gestión de usuarios'"
-          [icon]="Icon.Edit"
-          [buttonType]="ButtonType.Secondary" />
-      <gothings-button
-          (click)="this.navigateToEditProfile()"
-          [description]="'Gestión de usuarios'"
-          [icon]="Icon.Edit"
-          [buttonType]="ButtonType.Secondary" />
-      }
       <gothings-button
         (click)="this.navigateToHome()"
         [description]="'Inicio'"
         [icon]="Icon.Home"
         [buttonType]="ButtonType.Secondary" />
+      @if (this.isWithButtonUserManagement) {
+        <gothings-button
+          (click)="this.navigateToUserManagement()"
+          [description]="'Gestión de usuarios'"
+          [icon]="Icon.Edit"
+          [buttonType]="ButtonType.Secondary" />
+        <gothings-button
+          (click)="this.navigateToRoleManagement()"
+          [description]="'Gestión de roles'"
+          [icon]="Icon.Edit"
+          [buttonType]="ButtonType.Secondary" />
+      }
       <gothings-button
         (click)="this.navigateToMyArticles()"
         [description]="'Mis artículos'"
@@ -50,6 +50,7 @@
         [description]="'Cerrar sesión'"
         [icon]="Icon.Logout"
         [buttonType]="ButtonType.Secondary" />
+
     </div>
   }
 }

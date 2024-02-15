@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from '@shared/services/auth.service';
 import { ArticleResponseDto } from '@core/dtos/article/article-response.dto';
 import { UserDto } from '@core/dtos/user.dto';
+import { Role } from '@core/types/roles.type';
 
 @Injectable({
   providedIn: 'root',
@@ -34,5 +35,9 @@ export class UserService {
       userDto,
       this.getToken()
     );
+  }
+
+  getAll() {
+    return this.http.get<Array<UserDto>>(this.API_URL, this.getToken());
   }
 }

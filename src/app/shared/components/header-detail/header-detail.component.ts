@@ -31,10 +31,6 @@ export class HeaderDetailComponent implements OnInit {
     if (this.headerDetail.description === undefined) {
       this.headerDetail.description = '';
     }
-
-    if (this.headerDetail.photo !== '') {
-      this.withDescription = true;
-    }
   }
 
   isAdmin() {

@@ -1,3 +1,5 @@
+import { Role } from '@core/types/roles.type';
+
 export interface UserDto {
   id: string;
   photo: string;
@@ -5,4 +7,7 @@ export interface UserDto {
   about: string;
   rating: string;
   numberWhatsapp: string;
+  createdAt: string;
+  roles: Role[];
+  username: string;
 }

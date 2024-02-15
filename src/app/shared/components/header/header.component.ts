@@ -93,7 +93,7 @@ export class HeaderComponent implements OnInit {
   }
 
   navigateToEditProfile() {
-    this.router.navigate([`${AppRoute.Profile}`]).then();
+    this.router.navigate([AppRoute.Profile]).then();
     this.togglePreferences();
   }
 
@@ -128,6 +128,16 @@ export class HeaderComponent implements OnInit {
 
   navigateToMyArticles() {
     this.router.navigate([AppRoute.MyArticles]).then();
+    this.togglePreferences();
+  }
+
+  navigateToUserManagement() {
+    this.router.navigate([AppRoute.UserManagement]).then();
+    this.togglePreferences();
+  }
+
+  navigateToRoleManagement() {
+    this.router.navigate([AppRoute.RoleManagement]).then();
     this.togglePreferences();
   }
 }

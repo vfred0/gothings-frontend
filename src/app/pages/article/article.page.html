@@ -23,7 +23,7 @@
   <div class="c-article-page__content">
     <span class="o-text-xl-semibold">Publicador</span>
     <div class="c-article-page__user-card">
-      <gothings-header-detail [headerDetail]="this.headerDetail" />
+      <gothings-header-detail [headerDetail]="this.headerDetail"  [withDescription]="true" />
       @if (this.articleCard.user.about) {
       <span class="o-text-normal-medium">{{ this.articleCard.user.about }}</span>
       }

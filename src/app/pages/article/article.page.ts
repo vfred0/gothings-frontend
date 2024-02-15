@@ -11,6 +11,7 @@ import { ButtonType } from '@core/enums/button-type';
 import { HeaderDetail } from '@core/models/header-detail';
 import { AppRoute } from '@core/enums/app-route';
 import { ArticleService } from '@shared/services/article.service';
+import { ParseDate } from '@core/utils/parse-date';
 
 @Component({
   selector: 'gothings-article',
@@ -43,7 +44,9 @@ export default class ArticlePage {
     ] as ArticleCard;
     this.headerDetail = {} as HeaderDetail;
     this.headerDetail.title = this.articleCard.user.names;
-    this.headerDetail.description = this.articleCard.user.about;
+    this.headerDetail.description = 'Registrado '.concat(
+      ParseDate.toRelativeTime(this.articleCard.user.createdAt)
+    );
     this.headerDetail.photo = this.authService.getUserPhoto();
   }
 
