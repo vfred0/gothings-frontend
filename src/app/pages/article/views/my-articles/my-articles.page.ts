@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 
 import { MyArticleService } from '@shared/services/my-article.service';
-import { ExploreArticlesPage } from '@pages/article/explore-articles/explore-articles.page';
+import { ExploreArticlesPage } from '@pages/article/views/explore-articles/explore-articles.page';
 
 @Component({
   standalone: true,

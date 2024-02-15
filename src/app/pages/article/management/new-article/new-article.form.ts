@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import ArticleForm from '@pages/article/article-form/article.form';
+import ArticleForm from '@pages/article/management/article-form/article.form';
 import { AppRoute } from '@core/enums/app-route';
 import { ArticleRequestDto } from '@core/dtos/article/article-request.dto';
 

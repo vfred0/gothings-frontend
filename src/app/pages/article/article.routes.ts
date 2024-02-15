@@ -5,31 +5,35 @@ export const routes: Routes = [
   {
     path: AppRoute.Home,
     loadComponent: () =>
-      import('@pages/article/explore-articles/explore-articles.page').then(
-        m => m.ExploreArticlesPage
-      ),
+      import(
+        '@pages/article/views/explore-articles/explore-articles.page'
+      ).then(m => m.ExploreArticlesPage),
   },
   {
     path: AppRoute.Article,
-    loadComponent: () => import('@pages/article/article.page'),
+    loadComponent: () =>
+      import('@pages/article/views/article-page/article.page'),
   },
   {
     path: `${AppRoute.EditArticle}/:id`,
     loadComponent: () =>
-      import('@pages/article/update-article/update-article.form'),
+      import('@pages/article/management/update-article/update-article.form'),
   },
   {
     path: AppRoute.PublishArticle,
-    loadComponent: () => import('@pages/article/new-article/new-article.form'),
+    loadComponent: () =>
+      import('@pages/article/management/new-article/new-article.form'),
   },
   {
     path: `${AppRoute.Article}/:id`,
-    loadComponent: () => import('@pages/article/article.page'),
+    loadComponent: () =>
+      import('@pages/article/views/article-page/article.page'),
   },
 
   {
     path: `${AppRoute.MyArticles}`,
-    loadComponent: () => import('@pages/article/my-articles/my-articles.page'),
+    loadComponent: () =>
+      import('@pages/article/views/my-articles/my-articles.page'),
   },
 ];
 
