@@ -8,6 +8,7 @@ import { FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '@shared/services/auth.service';
 import { Router } from '@angular/router';
 import { AppRoute } from '@core/enums/app-route';
+import { toDto } from '@core/utils/form.util';
 
 @Component({
   standalone: true,
@@ -22,14 +23,12 @@ import { AppRoute } from '@core/enums/app-route';
 export default class RegisterPage {
   protected readonly Icon = Icon;
   protected readonly Validators = Validators;
-  private readonly registerRequestDto: RegisterRequestDto;
   private authService: AuthService;
   private router: Router;
   errorMessage: string;
   formGroup: FormGroup;
 
   constructor() {
-    this.registerRequestDto = {} as RegisterRequestDto;
     this.formGroup = new FormGroup({});
     this.authService = inject(AuthService);
     this.router = inject(Router);
@@ -37,10 +36,8 @@ export default class RegisterPage {
   }
 
   onRegister() {
-    this.registerRequestDto.names = this.getValue('names');
-    this.registerRequestDto.username = this.getValue('username');
-    this.registerRequestDto.password = this.getValue('password');
-    this.authService.register(this.registerRequestDto).subscribe({
+    const registerRequestDto = toDto<RegisterRequestDto>(this.formGroup.value);
+    this.authService.register(registerRequestDto).subscribe({
       next: () => this.router.navigate([AppRoute.Home]).then(),
       error: e => (this.errorMessage = e.error.message),
     });
