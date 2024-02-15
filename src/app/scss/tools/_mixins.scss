@@ -92,7 +92,7 @@
   @content;
 }
 
-@mixin layout-with-header(){
+@mixin layout(){
   @include column($em-24);
   padding: em(100) $em-18 $em-18;
 }
