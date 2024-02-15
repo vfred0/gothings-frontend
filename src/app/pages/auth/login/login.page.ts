@@ -8,6 +8,7 @@ import { LoginRequestDto } from '@core/dtos/auth/login-request.dto';
 import { Router } from '@angular/router';
 import { AuthService } from '@shared/services/auth.service';
 import { AppRoute } from '@core/enums/app-route';
+import { toDto } from '@core/utils/form.util';
 
 @Component({
   selector: 'gothings-login',
@@ -23,30 +24,28 @@ import { AppRoute } from '@core/enums/app-route';
 export default class LoginPage {
   protected readonly Icon = Icon;
   protected readonly Validators = Validators;
-  private readonly loginRequestDto: LoginRequestDto;
   private router: Router;
   authService: AuthService;
-  existsErrorInLogin: boolean;
+  existsErrorInLogin!: boolean;
+  errorMessage!: string;
   formGroup: FormGroup;
 
   @Output() requestLogin: EventEmitter<LoginRequestDto>;
 
   constructor() {
-    this.loginRequestDto = {} as LoginRequestDto;
     this.requestLogin = new EventEmitter<LoginRequestDto>();
     this.router = inject(Router);
     this.formGroup = new FormGroup({});
     this.authService = inject(AuthService);
-    this.existsErrorInLogin = false;
   }
 
   onLogin() {
-    this.loginRequestDto.username = this.getValue('username');
-    this.loginRequestDto.password = this.getValue('password');
     if (this.formGroup.valid) {
-      this.authService.login(this.loginRequestDto).subscribe({
+      const loginRequestDto = toDto<LoginRequestDto>(this.formGroup.value);
+      this.authService.login(loginRequestDto).subscribe({
         next: () => this.router.navigate([AppRoute.Home]).then(),
-        error: () => {
+        error: error => {
+          this.errorMessage = error.error.message;
           this.existsErrorInLogin = true;
         },
       });
@@ -54,10 +53,6 @@ export default class LoginPage {
     this.formGroup.valueChanges.subscribe(() => {
       this.existsErrorInLogin = false;
     });
-  }
-
-  private getValue(value: string) {
-    return this.formGroup.get(value)?.value.inputValue;
   }
 
   onRegister() {
@@ -79,5 +74,9 @@ export default class LoginPage {
       return dirty;
     }
     return check;
+  }
+
+  existErrorMessage() {
+    return this.errorMessage !== '';
   }
 }

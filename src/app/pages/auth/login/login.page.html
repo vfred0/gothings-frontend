@@ -26,6 +26,9 @@
     @if (this.existsErrorInLogin) {
       <span class="o-text-sm-semibold"> El usuario o la contraseña son incorrectos </span>
     }
+    @if (this.existErrorMessage()) {
+      <span class="o-text-sm-semibold"> {{ this.errorMessage }} </span>
+    }
     <gothings-button (click)="this.onLogin()" [description]="'Iniciar sesión'" [icon]="Icon.Login" />
     <gothings-button (click)="this.onRegister()" [description]="'Registrarse'" [icon]="Icon.Save" />
   </div>
