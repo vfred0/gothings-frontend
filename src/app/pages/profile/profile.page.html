@@ -50,5 +50,10 @@
     <span class="o-text-sm-semibold">{{ this.errorMessage }}</span>
   }
 
-  <gothings-button (click)="this.onEditProfile()" [description]="'Guardar cambios'" [icon]="Icon.Save"  [isDisabled]="this.formGroup.invalid" />
+  @if (this.message !== '') {
+    <span class="o-text-sm-semibold">{{ this.message }}</span>
+  }
+
+  <gothings-button (click)="this.onEditProfile()" [description]="'Guardar cambios'" [icon]="Icon.Save"
+                   [isDisabled]="this.formGroup.invalid" />
 </div>
