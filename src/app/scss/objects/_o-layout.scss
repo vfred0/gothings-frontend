@@ -33,6 +33,20 @@
     }
   }
 
+  &-roles {
+    display: grid;
+    grid-gap: $em-24;
+    width: 100%;
+    grid-template-columns: repeat(auto-fill, minmax(em(150), 1fr));
+
+    @include tablet() {
+      grid-template-columns: repeat(auto-fill, minmax(em(200), 1fr));
+    }
+    @include desktop() {
+      grid-template-columns: repeat(auto-fill, minmax(em(15), 1fr));
+    }
+  }
+
   &-view-rating-cards {
     display: grid;
     grid-gap: $em-24;

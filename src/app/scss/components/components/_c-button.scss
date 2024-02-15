@@ -43,11 +43,10 @@
     padding: $em-8 $em-6;
     background-color: $accent-third;
     color: $neutral-white;
-    cursor: initial;
+
 
     #{$button}__icon {
-      stroke: $neutral-white;
-      fill: $neutral-white;
+
     }
   }
 
@@ -64,4 +63,22 @@
     box-shadow: none;
     animation: ease-in-out 0.2s;
   }
+
+  &--selected {
+    background-color: $selected;
+    color: $neutral-white;
+    box-shadow: none;
+    cursor: pointer;
+
+    #{$button}__icon {
+        fill: none  ;
+        stroke: $neutral-white;
+    }
+  }
+}
+
+
+.feather-check, .feather-check-circle {
+  fill: none;
+  stroke: $neutral-white;
 }
