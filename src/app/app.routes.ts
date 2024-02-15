@@ -8,8 +8,13 @@ export const routes: Routes = [
     loadChildren: () => import('@pages/auth/auth.routes'),
   },
   {
-    path: AppRoute.Home,
+    path: '',
     loadChildren: () => import('@pages/article/article.routes'),
+    canActivate: [userIsAuthenticated],
+  },
+  {
+    path: '',
+    loadChildren: () => import('@pages/management/management.routes'),
     canActivate: [userIsAuthenticated],
   },
   {

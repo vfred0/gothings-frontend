@@ -12,4 +12,7 @@ export enum AppRoute {
   PublishArticle = 'publish-article',
   EditArticle = 'edit-article',
   MyArticles = 'my-articles',
+  Management = 'management',
+  UserManagement = 'management/users',
+  RoleManagement = 'roles',
 }

@@ -58,10 +58,17 @@ const routes: Array<IRoute> = [
     withPreferences: true,
     withPreferencesAndButtonEditProfile: false,
   },
-
   {
     path: AppRoute.MyArticles,
     title: 'Mis artículos',
+    withHeader: true,
+    withBack: true,
+    withPreferences: true,
+    withPreferencesAndButtonEditProfile: false,
+  },
+  {
+    path: AppRoute.UserManagement,
+    title: 'Gestión de usuarios',
     withHeader: true,
     withBack: true,
     withPreferences: true,

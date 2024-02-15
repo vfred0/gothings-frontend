@@ -19,4 +19,6 @@ export enum Icon {
   View = 'view',
   Like = 'like',
   Dislike = 'dislike',
+  Unchecked = 'unchecked',
+  Checked = 'checked',
 }

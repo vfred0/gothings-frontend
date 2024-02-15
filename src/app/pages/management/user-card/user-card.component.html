@@ -1,0 +1,14 @@
+<div class="c-exchange-card">
+  <gothings-header-detail [headerDetail]="this.headerDetail" [withDescription]="true" />
+  <span class="o-text-base-normal">{{ this.user.about }}</span>
+  <gothings-button (click)="onToggleShowEditRoles()" [description]="'Actualizar roles'" [icon]="Icon.Security"
+                   [buttonType]="ButtonType.Primary" />
+
+  @if (this.showEditRoles) {
+    <gothings-edit-roles [roles]="this.roles"  [username]="this.user.username"  (close)="onToggleShowEditRoles()" />
+  }
+  <gothings-button (click)="onDeleteUser()"
+                   [description]="'Eliminar usuario'" [icon]="Icon.Delete"
+                   [buttonType]="ButtonType.Secondary" />
+
+</div>
