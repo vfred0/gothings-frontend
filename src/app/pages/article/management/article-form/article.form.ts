@@ -47,6 +47,7 @@ export default class ArticleForm implements AfterViewInit {
   @ViewChild(GalleryComponent) gallery!: GalleryComponent;
   @Input() articleForm: ArticleFormModel;
   @Output() actionButton: EventEmitter<ArticleRequestDto>;
+  @Input() withGender!: boolean;
 
   public errorMessage!: string;
   protected readonly Validators = Validators;
@@ -56,7 +57,6 @@ export default class ArticleForm implements AfterViewInit {
   protected readonly Category = Category;
   protected readonly Gender = Gender;
   protected readonly State = State;
-  protected withGender!: boolean;
   protected formGroup: FormGroup;
   protected readonly router: Router = inject(Router);
   protected readonly articleService: ArticleService;
