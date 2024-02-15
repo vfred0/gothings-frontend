@@ -1,6 +1,6 @@
-.c-home-page {
+.c-explore-articles-page {
 
-  @include layout-with-header();
+  @include layout();
 
   &__inputs {
     @include column($em-16);
