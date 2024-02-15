@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { HeaderComponent } from '@shared/components/header/header.component';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ArticleCard } from '@core/models/article-card';
 import { AuthService } from '@shared/services/auth.service';
 import { ButtonComponent } from '@shared/components/button/button.component';
@@ -25,7 +25,6 @@ import { ParseDate } from '@core/utils/parse-date';
   templateUrl: './article.page.html',
 })
 export default class ArticlePage {
-  private readonly route: ActivatedRoute;
   private readonly router: Router;
   private readonly authService: AuthService;
   protected readonly Icon = Icon;
@@ -35,7 +34,6 @@ export default class ArticlePage {
   private articleService: ArticleService;
 
   constructor() {
-    this.route = inject(ActivatedRoute);
     this.router = inject(Router);
     this.authService = inject(AuthService);
     this.articleService = inject(ArticleService);
@@ -47,7 +45,7 @@ export default class ArticlePage {
     this.headerDetail.description = 'Registrado '.concat(
       ParseDate.toRelativeTime(this.articleCard.user.createdAt)
     );
-    this.headerDetail.photo = this.authService.getUserPhoto();
+    this.headerDetail.photo = this.authService.user.photo;
   }
 
   onContactWhatsApp() {}

@@ -60,8 +60,8 @@ export class HeaderComponent implements OnInit {
         const currentUrl = event.url;
         this.routePage.setRoute(currentUrl);
         this.isWithBack = this.routePage.isWithBack();
-        this.headerDetail.title = this.authService.getUserNames();
-        this.headerDetail.photo = this.authService.getUserPhoto();
+        this.headerDetail.title = this.authService.user.names;
+        this.headerDetail.photo = this.authService.user.photo;
         this.headerDetail.description = this.authService.getUserRol();
         if (!this.routePage.isHomeRoute()) {
           this.headerDetail.title = this.routePage.getRouteTitle();

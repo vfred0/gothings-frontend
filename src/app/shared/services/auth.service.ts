@@ -81,14 +81,6 @@ export class AuthService {
     return this.session;
   }
 
-  getUserNames() {
-    return this.session.names;
-  }
-
-  getUserPhoto() {
-    return this.session.photo;
-  }
-
   isUserAdmin() {
     const token = this.session.token;
     return this.jwtHelperService
@@ -98,10 +90,6 @@ export class AuthService {
 
   getUserRol(): string {
     return this.session.roles.join(', ');
-  }
-
-  getUserId() {
-    return this.session.id;
   }
 
   getToken() {
@@ -118,5 +106,9 @@ export class AuthService {
     this.session.numberWhatsapp = userDto.numberWhatsapp;
     this.session.about = userDto.about;
     localStorage.setItem('session', JSON.stringify(this.session));
+  }
+
+  getUserId() {
+    this.session.id;
   }
 }
