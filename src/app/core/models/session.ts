@@ -1,11 +1,5 @@
-export interface Session {
-  id: string;
-  photo: string;
-  names: string;
-  username: string;
-  roles: string[];
+import { UserDto } from '@core/dtos/user.dto';
+
+export interface Session extends UserDto {
   token: string;
-  numberWhatsapp: string;
-  about: string;
-  createdAt: string;
 }
