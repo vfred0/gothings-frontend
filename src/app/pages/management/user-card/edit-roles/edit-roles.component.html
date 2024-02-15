@@ -11,8 +11,8 @@
     <span class="o-text-sm-semibold">{{ this.errorMessage }}</span>
   }
 
-  @if (this.message !== '') {
-    <span class="o-text-sm-semibold">{{ this.message }}</span>
+  @if (this.showMessage) {
+    <span class="o-text-sm-semibold">Se han guardado los cambios</span>
   }
 
   <gothings-button (click)="onSave()" [description]="'Guardar cambios'" [icon]="Icon.Star"

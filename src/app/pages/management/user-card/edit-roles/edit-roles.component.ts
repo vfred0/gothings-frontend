@@ -32,32 +32,38 @@ export class EditRolesComponent {
   protected readonly ButtonType = ButtonType;
   private readonly userService: UserAccountService = inject(UserAccountService);
   errorMessage: string = '';
-  message: string = '';
 
   @Input() roles!: RoleUtil[];
   @Input() username!: string;
+  showMessage!: boolean;
 
   onSave() {
-    const selectedRoles = this.roles
-      .filter(role => role.isSelected)
-      .map(role => getKey(Role, role.role) as RoleType);
-    const rolesHasSelected = this.roles.some(role => role.hasSelected);
-    if (rolesHasSelected) {
-      const removeRoles: RoleType[] = this.roles
-        .filter(role => !role.isSelected && role.hasSelected)
-        .map(role => getKey(Role, role.role) as RoleType);
-      this.removeRoles(removeRoles);
-    } else {
-      this.saveRoles(selectedRoles);
+    let roles: RoleType[] = this.getRoles(false);
+    if (roles.length > 0) {
+      this.removeRoles(roles);
+      this.showMessage = !this.showMessage;
     }
+    roles = this.getRoles(true);
+    if (roles.length > 0) {
+      this.saveRoles(roles);
+      this.showMessage = !this.showMessage;
+    }
+  }
+
+  getRoles(shouldSelect: boolean): RoleType[] {
+    const condition = (role: RoleUtil) =>
+      shouldSelect
+        ? role.isSelected && !role.hasSelected
+        : !role.isSelected && role.hasSelected;
+
+    return this.roles
+      .filter(condition)
+      .map((role: RoleUtil) => getKey(Role, role.role) as RoleType);
   }
 
   private saveRoles(selectedRoles: RoleType[]) {
     const rolesWithLabel = this.getRolesWithLabel(selectedRoles);
     this.userService.addRoles(this.username, rolesWithLabel).subscribe({
-      next: () => {
-        this.message = 'Roles guardados correctamente';
-      },
       error: err => {
         this.errorMessage = err.error.message;
       },
@@ -68,9 +74,6 @@ export class EditRolesComponent {
     this.userService
       .removeRoles(this.username, this.getRolesWithLabel(roles))
       .subscribe({
-        next: () => {
-          this.message = 'Roles eliminados correctamente';
-        },
         error: err => {
           this.errorMessage = err.error.message;
         },
