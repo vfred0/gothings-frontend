@@ -8,7 +8,7 @@ import { InputComponent } from '@shared/components/input/input.component';
 import { UserDto } from '@core/dtos/user.dto';
 import { SvgIconComponent } from 'angular-svg-icon';
 import { SelectComponent } from '@shared/components/select/select.component';
-import { UserCardComponent } from '@pages/management/user-card/user-card.component';
+import { UserCardComponent } from '@pages/management/components/user-card/user-card.component';
 import { toDto } from '@core/utils/form.util';
 import { JsonPipe } from '@angular/common';
 

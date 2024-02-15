@@ -5,7 +5,7 @@ import { ParseDate } from '@core/utils/parse-date';
 import { HeaderDetailComponent } from '@shared/components/header-detail/header-detail.component';
 import { ButtonComponent } from '@shared/components/button/button.component';
 import { ButtonType } from '@core/enums/button-type';
-import { EditRolesComponent } from '@pages/management/user-card/edit-roles/edit-roles.component';
+import { EditRolesComponent } from '@pages/management/components/edit-roles/edit-roles.component';
 import { HeaderDetail } from '@core/models/header-detail';
 import { AuthService } from '@shared/services/auth.service';
 import { UserDto } from '@core/dtos/user.dto';
