@@ -14,8 +14,7 @@ import { ButtonSelectImageComponent } from '@shared/components/button/button-sel
 import { ButtonComponent } from '@shared/components/button/button.component';
 import { Icon } from '@core/enums/icon';
 import { ButtonType } from '@core/enums/button-type';
-import { getAllValues } from '@core/utils/enum.util';
-import { Gender } from '@core/enums/gender';
+import { getAllValues, getKey } from '@core/utils/enum.util';
 import { GalleryComponent } from '@shared/components/gallery/gallery.component';
 import { ArticleFormModel } from '@core/models/article-form.model';
 import { CategoryService } from '@shared/services/category/category.service';
@@ -24,8 +23,12 @@ import { ArticleRequestDto } from '@core/dtos/article/article-request.dto';
 import { ArticleService } from '@shared/services/article.service';
 import { Router } from '@angular/router';
 import { toDto } from '@core/utils/form.util';
+import { Gender } from '@core/enums/gender';
+import { Gender as GenderType } from '@core/types/gender.type';
 import { Category } from '@core/enums/category';
+import { Category as CategoryType } from '@core/types/category.type';
 import { State } from '@core/enums/state';
+import { State as StateType } from '@core/types/state.type';
 
 @Component({
   selector: 'gothings-article-form',
@@ -78,9 +81,25 @@ export default class ArticleForm implements AfterViewInit {
       this.formGroup.value
     );
     articleRequestDto.images = this.articleForm.images;
+    articleRequestDto.id = this.articleForm.id;
     if (!this.withGender) {
       delete articleRequestDto.gender;
+    } else {
+      articleRequestDto.gender = getKey(
+        Gender,
+        articleRequestDto.gender as Gender
+      ) as GenderType;
     }
+
+    articleRequestDto.category = getKey(
+      Category,
+      articleRequestDto.category as Category
+    ) as CategoryType;
+    articleRequestDto.state = getKey(
+      State,
+      articleRequestDto.state as State
+    ) as StateType;
+
     return articleRequestDto;
   }
 
