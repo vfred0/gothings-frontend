@@ -22,10 +22,13 @@ export function containsValue<T extends object, K extends keyof T>(
 }
 
 export function toUpperSnakeCase(name: string): string {
-  return name
-    .replace(/([A-Z])/g, '_$1')
-    .replace(/^_/, '')
-    .toUpperCase();
+  if (name !== undefined) {
+    return name
+      .replace(/([A-Z])/g, '_$1')
+      .replace(/^_/, '')
+      .toUpperCase();
+  }
+  return '';
 }
 
 export function toCamelCase(name: string): string {
