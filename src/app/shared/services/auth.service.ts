@@ -46,11 +46,17 @@ export class AuthService {
     this.session.photo = decodeToken.photo;
     this.session.numberWhatsapp = decodeToken.numberWhatsapp;
     this.session.about = decodeToken.about;
-    if (this.session.photo === '') {
-      this.session.photo = 'assets/default-profile.jpg';
-    }
+    this.setPhoto();
     this.session.token = token;
     localStorage.setItem('session', JSON.stringify(this.session));
+  }
+
+  private readonly _defaultPhoto = 'assets/default-profile.jpg';
+
+  private setPhoto() {
+    if (this.session.photo === '') {
+      this.session.photo = this._defaultPhoto;
+    }
   }
 
   destroySession() {
@@ -102,13 +108,17 @@ export class AuthService {
 
   setUser(userDto: UserDto) {
     this.session.names = userDto.names;
-    this.session.photo = userDto.photo;
+    this.setPhoto();
     this.session.numberWhatsapp = userDto.numberWhatsapp;
     this.session.about = userDto.about;
     localStorage.setItem('session', JSON.stringify(this.session));
   }
 
   getUserId() {
-    this.session.id;
+    return this.session.id;
+  }
+
+  isDefaultPhoto(photo: string) {
+    return this._defaultPhoto == photo;
   }
 }

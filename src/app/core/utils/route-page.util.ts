@@ -38,11 +38,6 @@ export class RoutePageUtil {
         withBack: false,
       },
       {
-        path: RoutePage.ProfileEditProfile,
-        title: 'Editar perfil',
-        withBack: true,
-      },
-      {
         path: RoutePage.MyArticles,
         title: 'Mis artículos',
         withBack: true,

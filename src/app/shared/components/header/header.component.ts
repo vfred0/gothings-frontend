@@ -79,8 +79,8 @@ export class HeaderComponent implements OnInit {
     this.location.back();
   }
 
-  navigateTo(appRoutePage: RoutePage) {
-    this.router.navigate([appRoutePage]).then();
+  navigateTo(routePage: RoutePage) {
+    this.router.navigate([routePage]).then();
     this.togglePreferences();
   }
 
