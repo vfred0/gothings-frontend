@@ -28,14 +28,13 @@ import { UserAccountService } from '@shared/services/user-account.service';
   templateUrl: './edit-roles.component.html',
 })
 export class EditRolesComponent {
-  protected readonly Icon = Icon;
-  protected readonly ButtonType = ButtonType;
-  private readonly userService: UserAccountService = inject(UserAccountService);
   errorMessage: string = '';
-
   @Input() roles!: RoleUtil[];
   @Input() username!: string;
   showMessage!: boolean;
+  protected readonly Icon = Icon;
+  protected readonly ButtonType = ButtonType;
+  private readonly userService: UserAccountService = inject(UserAccountService);
 
   onSave() {
     this.actionForRoles(true, (roles: RoleType[]) => this.saveRoles(roles));
@@ -101,19 +100,5 @@ export class EditRolesComponent {
 
   private getRolesWithLabel(selectedRoles: RoleType[]) {
     return selectedRoles.map(role => 'ROLE_'.concat(role));
-  }
-
-  onSelectedRole(role: Event) {
-    const selectedRole = (role.target as HTMLElement).textContent;
-    this.roles = this.roles.map(roleUtil => {
-      if (roleUtil.role === selectedRole) {
-        roleUtil.toggleSelected();
-      }
-      return roleUtil;
-    });
-  }
-
-  existsErrorMessage() {
-    return this.errorMessage !== '';
   }
 }
