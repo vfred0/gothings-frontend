@@ -38,16 +38,8 @@ export class EditRolesComponent {
   showMessage!: boolean;
 
   onSave() {
-    let roles: RoleType[] = this.getRoles(false);
-    if (roles.length > 0) {
-      this.removeRoles(roles);
-      this.showMessage = !this.showMessage;
-    }
-    roles = this.getRoles(true);
-    if (roles.length > 0) {
-      this.saveRoles(roles);
-      this.showMessage = !this.showMessage;
-    }
+    this.actionForRoles(true, (roles: RoleType[]) => this.saveRoles(roles));
+    this.actionForRoles(false, (roles: RoleType[]) => this.removeRoles(roles));
   }
 
   getRoles(shouldSelect: boolean): RoleType[] {
@@ -59,6 +51,17 @@ export class EditRolesComponent {
     return this.roles
       .filter(condition)
       .map((role: RoleUtil) => getKey(Role, role.role) as RoleType);
+  }
+
+  private actionForRoles(
+    obtainRoles: boolean,
+    action: (roles: RoleType[]) => void
+  ) {
+    const roles: RoleType[] = this.getRoles(obtainRoles);
+    if (roles.length > 0) {
+      action(roles);
+      this.showMessage = !this.showMessage;
+    }
   }
 
   private saveRoles(selectedRoles: RoleType[]) {
