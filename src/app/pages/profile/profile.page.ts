@@ -52,7 +52,9 @@ export default class ProfilePage {
         this.authService.setUser(userDto);
         this.message = 'Se han guardado los cambios';
       },
-      error: e => (this.errorMessage = e.error.message),
+      error: e => {
+        this.errorMessage = e.error.message;
+      },
     });
   }
 
