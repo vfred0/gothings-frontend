@@ -69,16 +69,18 @@ export class CategoryService {
   }
 
   getIncludes(category: Category): string {
-    return this.categories.find(this.getCategory(category))?.includes || '';
+    return this.getCategory(category, 'includes');
   }
 
-  isWithGender(category: Category) {
-    return (
-      this.categories.find(this.getCategory(category))?.withGender || false
-    );
+  isWithGender(category: Category): boolean {
+    return this.getCategory(category, 'withGender');
   }
 
-  private getCategory(category: Category) {
-    return (c: ICategory) => c.name === category;
+  private getCategory(category: Category, checkProperty: string) {
+    const objectCategory: ICategory = this.categories.find(
+      c => c.name === category
+    ) as ICategory;
+    const index = Object.keys(objectCategory).indexOf(checkProperty);
+    return Object.values(objectCategory)[index];
   }
 }
