@@ -43,14 +43,30 @@ export class EditRolesComponent {
   }
 
   getRoles(shouldSelect: boolean): RoleType[] {
-    const condition = (role: RoleUtil) =>
-      shouldSelect
-        ? role.isSelected && !role.hasSelected
-        : !role.isSelected && role.hasSelected;
+    const condition = function (role: RoleUtil) {
+      if (shouldSelect) {
+        return role.isSelected && !role.hasSelected;
+      }
+      return !role.isSelected && role.hasSelected;
+    };
 
     return this.roles
       .filter(condition)
       .map((role: RoleUtil) => getKey(Role, role.role) as RoleType);
+  }
+
+  onSelectedRole(role: Event) {
+    const selectedRole = (role.target as HTMLElement).textContent;
+    this.roles = this.roles.map(roleUtil => {
+      if (roleUtil.role === selectedRole) {
+        roleUtil.toggleSelected();
+      }
+      return roleUtil;
+    });
+  }
+
+  existsErrorMessage() {
+    return this.errorMessage !== '';
   }
 
   private actionForRoles(
