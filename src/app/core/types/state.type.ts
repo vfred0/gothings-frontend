@@ -1,1 +1,0 @@
-export type State = 'NEW' | 'USED' | 'PREOWNED';
