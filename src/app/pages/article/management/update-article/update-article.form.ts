@@ -15,18 +15,14 @@ export default class UpdateArticleForm extends ArticleForm {
     super();
     const articleCard: ArticleCard = this.router.getCurrentNavigation()!.extras
       .state!['article'] as ArticleCard;
-
-    this.articleForm.id = articleCard.id;
-    this.articleForm.title = articleCard.title;
-    this.articleForm.description = articleCard.description;
-    this.articleForm.category = articleCard.category;
-    this.articleForm.state = articleCard.state;
-    this.articleForm.images = articleCard.images;
-
-    this.withGender = new CategoryService().isWithGender(articleCard.category);
-
-    if (this.withGender) {
+    this.articleForm = articleCard.toArticleRequestDto();
+    this.isWithGender = new CategoryService().isWithGender(
+      articleCard.category
+    );
+    if (this.isWithGender) {
       this.articleForm.gender = articleCard.gender;
+    } else {
+      delete this.articleForm.gender;
     }
   }
 

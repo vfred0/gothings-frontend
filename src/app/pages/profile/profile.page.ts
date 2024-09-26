@@ -24,15 +24,15 @@ import { toDto } from '@core/utils/form.util';
   templateUrl: './profile.page.html',
 })
 export default class ProfilePage {
-  private readonly imageService: ImageService;
-  protected readonly Icon = Icon;
-  protected readonly Validators = Validators;
   authService: AuthService;
   userService: UserService;
   formGroup: FormGroup;
   photo: string;
   errorMessage!: string;
   message!: string;
+  protected readonly Icon = Icon;
+  protected readonly Validators = Validators;
+  private readonly imageService: ImageService;
 
   constructor() {
     this.authService = inject(AuthService);
@@ -67,9 +67,8 @@ export default class ProfilePage {
   }
 
   isInvalid(value: string) {
-    return (
-      this.formGroup.get(value)?.touched && this.formGroup.get(value)?.invalid
-    );
+    const get = this.formGroup.get;
+    return get(value)?.touched && get(value)?.invalid;
   }
 
   existsErrorMessage() {

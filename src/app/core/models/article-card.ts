@@ -5,6 +5,7 @@ import { ArticleResponseDto } from '@core/dtos/article/article-response.dto';
 import { getValue } from '@core/utils/enum.util';
 import { UserDto } from '@core/dtos/user.dto';
 import { ParseDate } from '@core/utils/parse-date';
+import { ArticleRequestDto } from '@core/dtos/article/article-request.dto';
 
 export class ArticleCard {
   id: string;
@@ -37,5 +38,17 @@ export class ArticleCard {
     this.dislikes = article.dislikes;
     this.images = article.images;
     this.user = article.user;
+  }
+
+  toArticleRequestDto(): ArticleRequestDto {
+    return {
+      id: this.id,
+      title: this.title,
+      description: this.description,
+      category: this.category,
+      state: this.state,
+      images: this.images,
+      gender: this.gender,
+    };
   }
 }

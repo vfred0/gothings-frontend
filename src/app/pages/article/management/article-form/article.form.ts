@@ -16,7 +16,6 @@ import { Icon } from '@core/enums/icon';
 import { ButtonType } from '@core/enums/button-type';
 import { getAllValues, getKey } from '@core/utils/enum.util';
 import { GalleryComponent } from '@shared/components/gallery/gallery.component';
-import { ArticleFormModel } from '@core/models/article-form.model';
 import { CategoryService } from '@shared/services/category/category.service';
 import { ImageService } from '@shared/services/image.service';
 import { ArticleRequestDto } from '@core/dtos/article/article-request.dto';
@@ -29,6 +28,7 @@ import { Category } from '@core/enums/category';
 import { Category as CategoryType } from '@core/types/category.type';
 import { State } from '@core/enums/state';
 import { State as StateType } from '@core/types/state.type';
+import { NULL_ARTICLE_FORM } from '@core/models/article';
 
 @Component({
   selector: 'gothings-article-form',
@@ -45,9 +45,9 @@ import { State as StateType } from '@core/types/state.type';
 })
 export default class ArticleForm implements AfterViewInit {
   @ViewChild(GalleryComponent) gallery!: GalleryComponent;
-  @Input() articleForm: ArticleFormModel;
-  @Output() actionButton: EventEmitter<ArticleRequestDto>;
-  @Input() withGender!: boolean;
+  @Input() articleForm: ArticleRequestDto = NULL_ARTICLE_FORM;
+  @Output() save: EventEmitter<ArticleRequestDto>;
+  @Input() isWithGender!: boolean;
 
   public errorMessage!: string;
   protected readonly Validators = Validators;
@@ -65,46 +65,14 @@ export default class ArticleForm implements AfterViewInit {
   constructor() {
     this.articleService = inject(ArticleService);
     this.imageService = inject(ImageService);
-    this.actionButton = new EventEmitter<ArticleRequestDto>();
+    this.save = new EventEmitter<ArticleRequestDto>();
     this.formGroup = new FormGroup({});
-    this.articleForm = new ArticleFormModel();
   }
 
   ngAfterViewInit() {
     this.formGroup.get('category')?.valueChanges.subscribe(category => {
-      this.withGender = new CategoryService().isWithGender(category.select);
+      this.isWithGender = new CategoryService().isWithGender(category.select);
     });
-  }
-
-  protected getArticleRequestDto() {
-    const articleRequestDto: ArticleRequestDto = toDto<ArticleRequestDto>(
-      this.formGroup.value
-    );
-    articleRequestDto.images = this.articleForm.images;
-    articleRequestDto.id = this.articleForm.id;
-    if (!this.withGender) {
-      delete articleRequestDto.gender;
-    } else {
-      articleRequestDto.gender = getKey(
-        Gender,
-        articleRequestDto.gender as Gender
-      ) as GenderType;
-    }
-
-    articleRequestDto.category = getKey(
-      Category,
-      articleRequestDto.category as Category
-    ) as CategoryType;
-    articleRequestDto.state = getKey(
-      State,
-      articleRequestDto.state as State
-    ) as StateType;
-
-    return articleRequestDto;
-  }
-
-  get containsImages() {
-    return this.articleForm.images.length > 0;
   }
 
   deleteImages() {
@@ -126,7 +94,38 @@ export default class ArticleForm implements AfterViewInit {
     );
   }
 
-  onActionButton() {
-    this.actionButton.emit(this.getArticleRequestDto());
+  onSubmit() {
+    this.save.emit(this.getArticleRequestDto());
+  }
+
+  containsImages() {
+    return false;
+  }
+
+  protected getArticleRequestDto() {
+    const articleRequestDto: ArticleRequestDto = toDto<ArticleRequestDto>(
+      this.formGroup.value
+    );
+    articleRequestDto.images = this.articleForm.images;
+    articleRequestDto.id = this.articleForm.id;
+    if (!this.isWithGender) {
+      delete articleRequestDto.gender;
+    } else {
+      articleRequestDto.gender = getKey(
+        Gender,
+        articleRequestDto.gender as Gender
+      ) as GenderType;
+    }
+
+    articleRequestDto.category = getKey(
+      Category,
+      articleRequestDto.category as Category
+    ) as CategoryType;
+    articleRequestDto.state = getKey(
+      State,
+      articleRequestDto.state as State
+    ) as StateType;
+
+    return articleRequestDto;
   }
 }

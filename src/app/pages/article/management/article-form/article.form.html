@@ -1,4 +1,4 @@
-<div class="c-publish-article-page" [formGroup]="this.formGroup">
+<div class="c-publish-article-page" [formGroup]="this.formGroup" (submit)="this.onSubmit()">
   <gothings-input [icon]="Icon.Edit"
                   [placeholder]="'Ingresa el nombre del artículo'"
                   [validators]="[Validators.required, Validators.maxLength(60)]"
@@ -12,19 +12,16 @@
 
   <gothings-select [formGroupName]="'category'"
                    [options]="getAllValues(Category)"
-                   [optionSelected]="this.articleForm.category"
+                   [optionSelected]="this.articleForm.category.toString()"
                    [title]="'Categorías'" />
 
-  <div [class.double-column]="this.withGender" class="c-publish-article-page__gender-state">
-    @if (this.withGender) {
-      <gothings-select [formGroupName]="'gender'"
-                       [options]="getAllValues(Gender)"
-                       [optionSelected]="this.articleForm.gender"
-                       [title]="'Género'" />
+  <div [class.double-column]="this.isWithGender" class="c-publish-article-page__gender-state">
+    @if (this.isWithGender) {
+
     }
     <gothings-select [formGroupName]="'state'"
                      [options]="getAllValues(State)"
-                     [optionSelected]="this.articleForm.state"
+                     [optionSelected]="this.articleForm.state.toString()"
                      [title]="'Estado'" />
   </div>
   <gothings-input [isTextArea]="true"
@@ -39,23 +36,23 @@
     <span class="o-text-sm-bold">La descripción es obligatoria y debe tener un máximo de 250 caracteres</span>
   }
 
-  <span class="o-text-xl-semibold">Galería</span>
-  <gothings-gallery [images]="this.articleForm.images" />
-  <div [class.c-publish-article-page__gallery-buttons]="this.containsImages">
-    <gothings-button-select-image (imageSelected)="this.onImageSelected($event)" />
-    @if (this.containsImages) {
-      <gothings-button (click)="this.deleteImages()"
-                       [description]="'Eliminar fotos'"
-                       [icon]="Icon.Delete"
-                       [buttonType]="ButtonType.Secondary" />
-    } @else {
-      <span class="o-text-sm-bold">Por favor, selecciona al menos una imagen...</span>
-    }
-  </div>
+<!--  <span class="o-text-xl-semibold">Galería</span>-->
+<!--  <gothings-gallery [images]="this.articleForm.images" />-->
+<!--  <div [class.c-publish-article-page__gallery-buttons]="this.containsImages">-->
+<!--    <gothings-button-select-image (imageSelected)="this.onImageSelected($event)" />-->
+<!--    @if (this.containsImages) {-->
+<!--      <gothings-button (click)="this.deleteImages()"-->
+<!--                       [description]="'Eliminar fotos'"-->
+<!--                       [icon]="Icon.Delete"-->
+<!--                       [buttonType]="ButtonType.Secondary" />-->
+<!--    } @else {-->
+<!--      <span class="o-text-sm-bold">Por favor, selecciona al menos una imagen...</span>-->
+<!--    }-->
+<!--  </div>-->
   @if (this.formGroup.touched && this.formGroup.invalid) {
     <span class="o-text-sm-bold">Por favor, antes de publicar el artículo, completa los campos obligatorios...</span>
   }
-  <gothings-button (click)="this.onActionButton()"
+  <gothings-button (click)="this.onSubmit()"
                    [description]="'Publicar artículo'"
                    [icon]="Icon.Save"
                    [isDisabled]="!this.containsImages || this.formGroup.invalid"

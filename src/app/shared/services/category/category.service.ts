@@ -69,18 +69,18 @@ export class CategoryService {
   }
 
   getIncludes(category: Category): string {
-    return this.getCategory(category, 'includes');
+    return this.getCategoryWithProperty(category, 'includes');
   }
 
   isWithGender(category: Category): boolean {
-    return this.getCategory(category, 'withGender');
+    return this.getCategoryWithProperty(category, 'withGender');
   }
 
-  private getCategory(category: Category, checkProperty: string) {
+  private getCategoryWithProperty(category: Category, property: string) {
     const objectCategory: ICategory = this.categories.find(
       c => c.name === category
     ) as ICategory;
-    const index = Object.keys(objectCategory).indexOf(checkProperty);
+    const index = Object.keys(objectCategory).indexOf(property);
     return Object.values(objectCategory)[index];
   }
 }
