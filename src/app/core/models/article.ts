@@ -1,6 +1,6 @@
-import { Category } from '../enums/Category.ts';
-import { State } from '../enums/State.ts';
-import { Gender } from '../enums/Gender.ts';
+import { Category } from '../enums/category.ts';
+import { State } from '../enums/state.ts';
+import { Gender } from '../enums/gender.ts';
 
 export type Article = {
   id: string;

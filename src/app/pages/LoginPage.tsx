@@ -7,7 +7,7 @@ import {
   Space,
 } from '@arco-design/web-react';
 import { useLoginService } from '@shared/services/use-login.service.ts';
-import { UserLoginRequestDto } from '@core/models/User.ts';
+import { UserLoginRequestDto } from '@core/models/user.ts';
 import { useEffect } from 'react';
 import useTitle from '@shared/hooks/use-title.ts';
 

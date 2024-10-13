@@ -1,7 +1,7 @@
 import { LocalStorageKeys } from '@core/utils/local-storage-keys.ts';
 import { useLocalStorage } from '@uidotdev/usehooks';
 import { useAuthStore } from '@app/shared/stores/auth-store.ts';
-import { UserLoginRequestDto } from '@core/models/User.ts';
+import { UserLoginRequestDto } from '@core/models/user.ts';
 import { ApiPaths } from '@core/utils/api-paths.ts';
 import { useMutation } from '@tanstack/react-query';
 import request from '@app/shared/services/axios.service.ts';

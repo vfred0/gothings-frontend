@@ -1,4 +1,4 @@
-import { UserDto } from '@core/models/User.ts';
+import { UserDto } from '@core/models/user.ts';
 import { create } from 'zustand';
 
 export type User = UserDto;

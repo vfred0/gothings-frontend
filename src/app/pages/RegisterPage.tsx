@@ -8,7 +8,7 @@ import {
   Notification,
 } from '@arco-design/web-react';
 import { useLoginService } from '@shared/services/use-login.service.ts';
-import { UserRegisterRequestDto } from '@core/models/User.ts';
+import { UserRegisterRequestDto } from '@core/models/user.ts';
 import { useEffect, useState } from 'react';
 
 export default function RegisterPage() {

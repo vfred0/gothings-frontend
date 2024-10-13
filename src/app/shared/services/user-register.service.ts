@@ -1,5 +1,5 @@
 import { useLoginService } from '@shared/services/use-login.service.ts';
-import { UserRegisterRequestDto } from '@core/models/User.ts';
+import { UserRegisterRequestDto } from '@core/models/user.ts';
 import request from '@app/shared/services/axios.service.ts';
 import { ApiPaths } from '@core/utils/api-paths.ts';
 import { useMutation } from '@tanstack/react-query';
