@@ -2,7 +2,7 @@ import { Category } from '../enums/Category.ts';
 import { State } from '../enums/State.ts';
 import { Gender } from '../enums/Gender.ts';
 
-export interface Article {
+export type Article = {
   id: string;
   title: string;
   description: string;
@@ -12,3 +12,6 @@ export interface Article {
   gender: Gender;
   images: string[];
 }
+
+export type ArticleRequestDto = Omit<Article, 'id'>
+export type ArticleResponseDto = Article

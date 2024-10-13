@@ -24,8 +24,7 @@
       "@app/*": ["src/app/*"],
       "@env/*": ["src/environments/*"],
       "@core/*": ["src/app/core/*"],
-      "@domain/*": ["src/app/domain/*"],
-      "@infrastructure/*": ["src/app/infrastructure/*"],
+      "@shared/*": ["src/app/shared/*"],
       "@test/*": ["src/test/*"]
     }
     

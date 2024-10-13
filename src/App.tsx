@@ -1,8 +1,9 @@
-function App() {
+import { useLoadSession } from '@app/shared/hooks/use-load-session.ts';
+import AppProviders from '@app/shared/providers';
+import "@arco-design/web-react/dist/css/arco.css";
 
-  return (<>
-    <h1>Initial project</h1>
-    </>);
+export default function App() {
+  useLoadSession();
+
+  return <AppProviders />;
 }
-
-export default App;
